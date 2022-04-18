@@ -7,7 +7,7 @@ import "@assets/css/gordita-fonts.css";
 import "@assets/css/icofont.min.css";
 import "@assets/css/modal-video.min.css";
 import HeaderSix from "./header/header-six";
-import FooterSix from "./footer/footer-six";
+import Footer from "./footer/footer-one";
 const Layout = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
                 <GlobalCSS />
                 {children}
             </div>
-            <FooterSix />
+            <Footer />
         </ThemeProvider>
     );
 };

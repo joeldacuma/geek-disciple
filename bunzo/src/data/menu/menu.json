@@ -5,8 +5,7 @@
         "isSubmenu": true,
         "submenu": [
             {
-                "text": "Home Two",
-                "link": "/index-2"
+                "text": "Home Two"
             },
             {
                 "text": "Home Three",

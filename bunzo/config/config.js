@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 module.exports = {
-    title: "Bunzo",
-    titleTemplate: "Bunzo - React Gatsby Blog Template",
-    description: "Bunzo is one of the most popular blog template",
-    author: "Bunzo",
-    twitterUsername: "@bunzo",
+    title: "Geek Disciple",
+    titleTemplate: "Geek Disciple: Walkthroughs, Lifestyle trends & Technology news",
+    description: "A Website for latest lifestyle trends, Game reviews and walkthrough",
+    author: "Joel L. Dacuma",
+    twitterUsername: "",
     keywords: [
         "bootstrap",
         "html",
@@ -15,18 +15,18 @@ module.exports = {
         "creative",
     ],
     image: "banner_image.png",
-    siteUrl: "https://bunzo.com",
+    siteUrl: "http://geekdisciple.com",
     pathPrefix: "/bootstrap-template",
     localUrl: "http://localhost:8000",
-    canonical: "https://bunzo.com",
+    canonical: "http://geekdisciple.com",
     social: {
-        facebook: "https://www.facebook.com/bunzo",
-        twitter: "https://twitter.com/bunzo",
-        linkedin: "https://www.linkedin.com/company/bunzo/",
+        facebook: "https://www.facebook.com/geekdisciple",
+        twitter: "",
+        linkedin: "",
     },
     siteLanguage: "en",
     favicon: "src/assets/images/favicon.png", // Used for manifest favicon generation
-    shortName: "bunzo", // shortname for manifest. *Must* be shorter than 12 characters
+    shortName: "geekdisciple", // shortname for manifest. *Must* be shorter than 12 characters
     themeColor: "#5E60E7",
     backgroundColor: "#fff",
 };
