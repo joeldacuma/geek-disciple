@@ -1,0 +1,5 @@
+
+Version: 1.0.1 —-—-DATE: 18-April-2022
+
+1: Video modul window issues fixed 
+2: Gatsby Plugin Update.
