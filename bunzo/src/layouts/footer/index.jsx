@@ -3,36 +3,34 @@ import { jsx } from "theme-ui";
 import HeartIcon from "@assets/images/svg/heart.svg";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import { Container, Row, Col } from "react-bootstrap";
-import Button from "../../../components/shared/button";
-import Social, { SocialLink } from "../../../components/social";
+import Button from "../../components/shared/button";
+import Social, { SocialLink } from "../../components/social";
 import { StaticImage } from "gatsby-plugin-image";
 import {
     FooterWrap,
-    FooterMidArea,
+    FooterTopArea,
     FooterWidget,
+    FooterDec,
     FooterLogo,
     FooterMenuWidget,
-    FooterDec,
+    FooterSubscribeWrap,
+    SingleInput,
+    Input,
+    ButtonBox,
     SingleFooterMenu,
     FooterWidgetTitle,
     WidgetTitle,
     FooterWidgetMenuList,
     NavItem,
-    FooterSubscribeWrap,
-    SingleInput,
-    Input,
-    ButtonBox,
     FooterBottomArea,
     FooterBottomInner,
     CopyrightText,
-    HeaderTopMenuList,
-    ListNavItem,
-    NavLink,
+    ButtonRightBox,
 } from "./style";
 
-const FooterFive = () => {
+const Footer = () => {
     const footerQuery = useStaticQuery(graphql`
-        query FooterFiveQuery {
+        query FooterQuery {
             footerJson {
                 id
                 quickLink {
@@ -61,25 +59,25 @@ const FooterFive = () => {
 
     return (
         <FooterWrap>
-            <FooterMidArea>
+            <FooterTopArea>
                 <Container>
                     <Row>
-                        <Col lg={3} md={6} sm={6} xs={12}>
+                        <Col lg={3} md={6} sm={6}>
                             <FooterWidget>
                                 <FooterLogo>
                                     <Link to="/">
                                         <StaticImage
-                                            src="../../../data/images/logo/logo-5.png"
+                                            src="../../data/images/logo/logo-white.png"
                                             alt=""
                                         />
                                     </Link>
                                 </FooterLogo>
                                 <FooterDec>{footerAbout}</FooterDec>
                                 <Social
-                                    sx={{ mt: "20px" }}
+                                    sx={{ mt: "30px" }}
                                     shape="rounded-5"
                                     space={15}
-                                    bgColor="transparent"
+                                    bgColor="black"
                                 >
                                     <SocialLink href="https://www.facebook.com/">
                                         <i className="icofont-facebook"></i>
@@ -96,7 +94,7 @@ const FooterFive = () => {
                                 </Social>
                             </FooterWidget>
                         </Col>
-                        <Col lg={4} md={6} sm={6} xs={12}>
+                        <Col lg={4} md={6} sm={6}>
                             <FooterWidget className="footer-subscribe-center">
                                 <FooterWidgetTitle>
                                     <WidgetTitle>Subscribe</WidgetTitle>
@@ -118,7 +116,6 @@ const FooterFive = () => {
                                         <Button
                                             size="large"
                                             shape="rounded-10"
-                                            color="warning"
                                             type="submit"
                                         >
                                             Subscribe Now
@@ -127,7 +124,7 @@ const FooterFive = () => {
                                 </FooterSubscribeWrap>
                             </FooterWidget>
                         </Col>
-                        <Col lg={5} md={12} sm={12}>
+                        <Col lg={5}>
                             <FooterMenuWidget>
                                 <SingleFooterMenu>
                                     <FooterWidgetTitle>
@@ -187,12 +184,11 @@ const FooterFive = () => {
                         </Col>
                     </Row>
                 </Container>
-            </FooterMidArea>
-
-            <FooterBottomArea sx={{}}>
-                <Container fluid className="container-custom-150">
+            </FooterTopArea>
+            <FooterBottomArea>
+                <Container>
                     <Row>
-                        <Col xs={12}>
+                        <Col xs={12} sx={{ textAlign: "center" }}>
                             <FooterBottomInner>
                                 <CopyrightText>
                                     &copy; {new Date().getFullYear()}
@@ -213,17 +209,17 @@ const FooterFive = () => {
                                         HasThemes
                                     </a>
                                 </CopyrightText>
-                                <HeaderTopMenuList>
-                                    <ListNavItem>
-                                        <NavLink href="#">Help</NavLink>
-                                    </ListNavItem>
-                                    <ListNavItem>
-                                        <NavLink href="#">Status</NavLink>
-                                    </ListNavItem>
-                                    <ListNavItem>
-                                        <NavLink href="#">Writers</NavLink>
-                                    </ListNavItem>
-                                </HeaderTopMenuList>
+                                <ButtonRightBox>
+                                    <Button
+                                        path="/contact-us"
+                                        size="large"
+                                        shape="rounded-10"
+                                    >
+                                        {" "}
+                                        Share your thinking{" "}
+                                        <i className="icofont-long-arrow-right"></i>
+                                    </Button>
+                                </ButtonRightBox>
                             </FooterBottomInner>
                         </Col>
                     </Row>
@@ -233,4 +229,4 @@ const FooterFive = () => {
     );
 };
 
-export default FooterFive;
+export default Footer;
