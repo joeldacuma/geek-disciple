@@ -2,28 +2,8 @@
     {
         "text": "Home",
         "link": "/",
-        "isSubmenu": true,
-        "submenu": [
-            {
-                "text": "Home Two"
-            },
-            {
-                "text": "Home Three",
-                "link": "/index-3"
-            },
-            {
-                "text": "Home Four",
-                "link": "/index-4"
-            },
-            {
-                "text": "Home Five",
-                "link": "/index-5"
-            },
-            {
-                "text": "Home Six",
-                "link": "/index-6"
-            }
-        ]
+        "isSubmenu": false,
+        "submenu": []
     },
     {
         "text": "About",
