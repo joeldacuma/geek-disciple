@@ -52,6 +52,7 @@ module.exports = {
                     {
                         singularName: 'home',
                         queryParams: {
+                            publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
                             populate: {
                                 Menu: {
                                     populate: '*'
@@ -89,6 +90,7 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        `gatsby-plugin-gatsby-cloud`,
         {
             resolve: "gatsby-plugin-manifest",
             options: {
