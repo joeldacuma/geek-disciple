@@ -52,7 +52,11 @@ module.exports = {
                     {
                         singularName: 'home',
                         queryParams: {
-                            populate: '*'
+                            populate: {
+                                Menu: {
+                                    populate: '*'
+                                }
+                            }
                         }
                     }
                ],

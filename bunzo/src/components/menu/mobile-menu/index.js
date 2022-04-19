@@ -47,22 +47,22 @@ const MobileNavMenu = ({ MobilemenuData }) => {
             <Navbar className="site-mobile-menu">
                 <ul>
                     {MobileMenuArr.map((menu) => {
-                        const hasSubmenu = menu.node.isSubmenu ? true : false;
-                        const submenu = menu.node.submenu;
+                        const hasSubmenu = menu.isSubmenu ? true : false;
+                        const submenu = menu.submenu;
                         return (
                             <MobileNavitem
-                                key={`menu-${menu.node.id}`}
+                                key={`menu-${menu.id}`}
                                 className={`${
                                     hasSubmenu ? "has-submenu-dropdown" : ""
                                 }`}
                             >
                                 <Link
                                     activeClassName="active"
-                                    to={menu.node.link}
+                                    to={menu.link}
                                 >
-                                    {menu.node.text}
+                                    {menu.text}
                                 </Link>
-                                {submenu && (
+                                {hasSubmenu && (
                                     <Fragment>
                                         <button
                                             className="menu-toggle menu-expand"

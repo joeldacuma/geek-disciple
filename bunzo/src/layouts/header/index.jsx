@@ -24,25 +24,27 @@ import {
 
 const Header = () => {
     const allmenuData = useStaticQuery(graphql`
-        query AllmenuSixQuery {
-            allMenuJson {
-                edges {
-                    node {
-                        id
-                        text
-                        link
-                        isSubmenu
-                        submenu {
-                            link
-                            text
-                        }
-                    }
+    query AllHomeQuery {
+        allStrapiHome {
+          edges {
+            node {
+              Menu {
+                link
+                isSubmenu
+                text
+                id
+                submenu {
+                  link
+                  text
                 }
+              }
             }
+          }
         }
+      }      
     `);
-    const menuData = allmenuData.allMenuJson.edges;
-
+    const menuEdges = allmenuData.allStrapiHome.edges;
+    const menuData = menuEdges[0].node.Menu;
     // OfCanvas Menu
     const [ofcanvasOpen, setOfcanvasOpen] = useState(false);
 
