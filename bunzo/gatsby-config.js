@@ -1,5 +1,9 @@
 /* eslint-disable prettier/prettier */
 const config = require("./config/config");
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`
+});
+
 const activeEnv =
     process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development";
 
@@ -37,6 +41,22 @@ module.exports = {
             options: {
                 name: "data",
                 path: `${__dirname}/src/data/`,
+            },
+        },
+        {
+            resolve: 'gatsby-source-strapi',
+            options: {
+                apiURL: process.env.STRAPI_API_URL || 'http://localhost:1337',
+                accessToken: process.env.STRAPI_TOKEN,
+                singleTypes:[
+                    {
+                        singularName: 'home',
+                        queryParams: {
+                            populate: '*'
+                        }
+                    }
+               ],
+               queryLimit: 1000,
             },
         },
         {
