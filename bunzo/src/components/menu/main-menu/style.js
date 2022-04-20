@@ -39,7 +39,7 @@ export const Navitem = styled.li`
         padding: 30px 2px;
         position: relative;
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 1.18;
         transition: all 0s ease-in-out;
         &:hover,

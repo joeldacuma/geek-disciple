@@ -6,15 +6,14 @@ module.exports = {
     author: "Joel L. Dacuma",
     twitterUsername: "",
     keywords: [
-        "bootstrap",
+        "games",
         "html",
-        "react",
-        "gatsby",
-        "template",
         "blog",
         "creative",
+        "trends",
+        "technology"
     ],
-    image: "banner_image.png",
+    image: "",
     siteUrl: "http://geekdisciple.com",
     pathPrefix: "/bootstrap-template",
     localUrl: "http://localhost:8000",
@@ -27,6 +26,6 @@ module.exports = {
     siteLanguage: "en",
     favicon: "src/assets/images/favicon.png", // Used for manifest favicon generation
     shortName: "geekdisciple", // shortname for manifest. *Must* be shorter than 12 characters
-    themeColor: "#5E60E7",
+    themeColor: "#41273c",
     backgroundColor: "#fff",
 };
