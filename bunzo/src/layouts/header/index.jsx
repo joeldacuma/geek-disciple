@@ -2,7 +2,6 @@
 import { jsx } from "theme-ui";
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { StaticImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import MainMenu from "../../components/menu/main-menu";
 import MobileNavMenu from "../../components/menu/mobile-menu";
@@ -38,6 +37,11 @@ const Header = () => {
                   text
                 }
               }
+              websiteLogo {
+                name
+                url
+                size
+              }
             }
           }
         }
@@ -45,6 +49,9 @@ const Header = () => {
     `);
     const menuEdges = allmenuData.allStrapiHome.edges;
     const menuData = menuEdges[0].node.Menu;
+    const logoData = menuEdges[0].node.websiteLogo;
+    const headerLogo = logoData.url;
+
     // OfCanvas Menu
     const [ofcanvasOpen, setOfcanvasOpen] = useState(false);
 
@@ -61,9 +68,9 @@ const Header = () => {
                         <Col lg={3} md={3} xs={5}>
                             <Logo>
                                 <Link to="/">
-                                    <StaticImage
-                                        src="../../data/images/logo/logo-5-black.png"
-                                        alt=""
+                                    <img
+                                        src={headerLogo}
+                                        alt={logoData.name}
                                     />
                                 </Link>
                             </Logo>

@@ -55,6 +55,9 @@ module.exports = {
                         queryParams: {
                             publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
                             populate: {
+                                websiteLogo: {
+                                    populate: '*'
+                                },
                                 Menu: {
                                     populate: '*'
                                 }
