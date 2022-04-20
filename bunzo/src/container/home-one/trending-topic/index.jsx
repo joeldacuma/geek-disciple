@@ -17,12 +17,13 @@ import {
 const TrendingTopics = () => {
     const trendingTopicsQuery = useStaticQuery(graphql`
         query TrendingTopicsQuery {
-            allCategoriesJson(filter: { trending: { eq: true } }) {
+            allStrapiCategory(filter: { trending: { eq: true } }) {
                 edges {
-                    node {
-                        name
-                        color
-                        image {
+                  node {
+                    trending
+                    name
+                    image {
+                        localFile {
                             childImageSharp {
                                 gatsbyImageData(
                                     width: 160
@@ -32,15 +33,18 @@ const TrendingTopics = () => {
                             }
                         }
                     }
+                    slug
+                  }
                 }
-            }
+              }
         }
     `);
 
-    const trendingTopicsData = trendingTopicsQuery.allCategoriesJson.edges;
+    const trendingTopicsData = trendingTopicsQuery.allStrapiCategory.edges;
     const categories = [
         ...new Set(flatDeep(trendingTopicsData.map((td) => td.node))),
     ];
+    console.log(categories);
 
     return (
         <BgGray1Area>
@@ -48,7 +52,7 @@ const TrendingTopics = () => {
                 <Container>
                     <Row>
                         <TrendingTopicSectionTitle>
-                            <h3>Trending Topic</h3>
+                            <h3>Feature Topics</h3>
                             <TrendingTopicNavigation>
                                 <NavigationButton className="trending-topic-button-prev">
                                     <i className="icofont-long-arrow-left"></i>
@@ -92,8 +96,8 @@ const TrendingTopics = () => {
                                             <SwiperSlide key={i}>
                                                 <TrendingTopicItems
                                                     name={cat.name}
-                                                    color={cat.color}
-                                                    image={cat.image}
+                                                    color={cat.slug}
+                                                    image={cat.image.localFile}
                                                 />
                                             </SwiperSlide>
                                         );

@@ -10,7 +10,7 @@ import LargeSinglePosts from "../../components/large-single-post";
 import LatestPostArea from "../../container/latest-post";
 import { BlogDetailsArea, BlogDetailsRightSidebar } from "./style";
 
-const CategorisPosts = ({ data, location, pageContext }) => {
+const CategoriesPosts = ({ data, location, pageContext }) => {
     return (
         <Layout>
             <SEO title={"Blog Categories Post"} pathname="/" />
@@ -69,7 +69,7 @@ const CategorisPosts = ({ data, location, pageContext }) => {
     );
 };
 
-CategorisPosts.propTypes = {
+CategoriesPosts.propTypes = {
     data: PropTypes.object,
     location: PropTypes.object,
     pageContext: PropTypes.object,
@@ -110,4 +110,4 @@ export const CategorieQuery = graphql`
         }
     }
 `;
-export default CategorisPosts;
+export default CategoriesPosts;
