@@ -64,6 +64,13 @@ module.exports = {
                             populate: '*'
                         }
                     },
+                    {
+                        singularName: 'author',
+                        queryParams: {
+                            publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
+                            populate: '*'
+                        }
+                    },
                 ],
                 singleTypes:[
                     {
