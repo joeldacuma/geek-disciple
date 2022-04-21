@@ -32,12 +32,12 @@ exports.onCreateNode = ({ node, actions }) => {
     // fields create in qrapql file
     if (node.internal.type === "MarkdownRemark") {
         const slugFromTitle = slugify(node.frontmatter.title);
-        const date = node.frontmatter.date;
+        const date = (node.frontmatter.date) ? node.frontmatter.date : '2022-01-01';
         const dateSplit = date.split(" ");
         createNodeField({
             node,
             name: "slug",
-            value: slugFromTitle,
+            value: (slugFromTitle) ? slugFromTitle : 'sample-slug-1',
         });
         createNodeField({
             node,
@@ -49,6 +49,7 @@ exports.onCreateNode = ({ node, actions }) => {
             name: "dateSlug",
             value: dateSplit[0],
         });
+
         if (Object.prototype.hasOwnProperty.call(node.frontmatter, "author")) {
             createNodeField({
                 node,
