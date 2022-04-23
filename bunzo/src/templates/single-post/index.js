@@ -5,7 +5,7 @@ import Layout from "@layout";
 import SEO from "@components/seo";
 import PageBreadcrumb from "@components/pagebreadcrumb";
 import Social, { SocialLink } from "../../components/social";
-import { graphql, Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { Row, Container, Col } from "react-bootstrap";
 import { slugify } from "@utils/functions";
 import StayInTouchs from "@components/stay-in-touch";
@@ -35,24 +35,85 @@ import {
     CommentArea,
     CommentTitle,
 } from "./style";
+import * as moment from "moment";
 
 const SinglePosts = ({ data, location, pageContext }) => {
-    const post = data.markdownRemark.frontmatter;
-    const { authorId, dateSlug } = data.markdownRemark.fields;
-    const { author } = post;
+const postsQuery = useStaticQuery(graphql`
+query AllBlogsPost {
+allStrapiBlog {
+    edges {
+      node {
+        Videos {
+          youtube
+          vimeo
+          title
+        }
+        authors {
+          authorId
+          lastName
+          firstName
+          biography
+          email
+          profession
+          social {
+            facebook
+            instagram
+            linkedin
+          }
+          profile {
+              localFile {
+                childImageSharp {
+                    gatsbyImageData
+                }
+              }
+          }
+        }
+        categories {
+          slug
+          name
+        }
+        is_trending_article
+        is_featured
+        slug
+        title
+        createdAt
+        cover {
+          localFile {
+            childImageSharp {
+                gatsbyImageData
+            }
+          }
+        }
+        content {
+          data {
+            content
+          }
+        }
+      }
+    }
+  }
+}
+`);
+    const posts = postsQuery.allStrapiBlog.edges;
+    const postData = posts.find(({ node }) => node.slug === pageContext.slug);
+    const post = postData.node;
+    const coverImage = getImage(post.cover.localFile);
+    const authorImage = getImage(post.authors.profile.localFile);
+    // const { authorId, dateSlug } = data.markdownRemark.fields;
+    // const { author } = post;
 
-    const image = getImage(post.thume_image.childImageSharp);
+    // const image = getImage(post.thume_image.childImageSharp);
 
-    // Social Share
-    const baseUrl = "https://hasthems.com";
+    // // Social Share
+    // const baseUrl = "https://hasthems.com";
 
-    // Disqus Comments add
-    const disqusShorttname = "mitech-1";
-    const disquscConfig = {
-        identifier: data.markdownRemark.id,
-        title: post.title,
-        url: baseUrl + "/" + pageContext.slug,
-    };
+    // // Disqus Comments add
+    // const disqusShorttname = "mitech-1";
+    // const disquscConfig = {
+    //     identifier: data.markdownRemark.id,
+    //     title: post.title,
+    //     url: baseUrl + "/" + pageContext.slug,
+    //};
 
     return (
         <Layout>
@@ -61,170 +122,66 @@ const SinglePosts = ({ data, location, pageContext }) => {
             <BlogDetailsArea>
                 <Container>
                     <Row className="gx-5">
-                        <Col lg={8}>
-                            <PostDetailsContentWrap>
-                                <PostDetailsBody>
-                                    <Thumb>
-                                        <GatsbyImage
-                                            image={image}
-                                            alt={post.title}
-                                        />
-                                    </Thumb>
-                                    <Content>
-                                        <BlogDetailsMetaBox>
-                                            <PostMetaLeftSide>
-                                                <MetaBox>
-                                                    {post.categories &&
-                                                        post.categories.map(
-                                                            (categorie, i) => (
-                                                                <Link
-                                                                    className={`post-category ${categorie.color}`}
-                                                                    key={`${slugify(
-                                                                        categorie
-                                                                    )}-${i}`}
-                                                                    to={`/category/${slugify(
-                                                                        categorie.name
-                                                                    )}`}
-                                                                >
-                                                                    {
-                                                                        categorie.name
-                                                                    }
-                                                                </Link>
-                                                            )
-                                                        )}
-                                                </MetaBox>
-                                                <BlogDetailsPostAuthor>
-                                                    By{" "}
-                                                    <Link
-                                                        to={`/profile/${authorId}`}
-                                                    >
-                                                        {author.name}
-                                                    </Link>
-                                                </BlogDetailsPostAuthor>
-                                            </PostMetaLeftSide>
-
-                                            <PostMidSide>
-                                                <PostDate>
-                                                    <i className="icofont-ui-calendar"></i>
-                                                    <Link
-                                                        to={`/date/${dateSlug}`}
-                                                    >
-                                                        {post.date}
-                                                    </Link>
-                                                </PostDate>
-                                                <PostTime>10 min read</PostTime>
-                                            </PostMidSide>
-
-                                            <PostMetaRightSide>
-                                                <a href="/">
-                                                    <StaticImage
-                                                        src="../../data/images/icons/small-bookmark.png"
-                                                        alt=""
-                                                    />
-                                                </a>
-                                                <a href="/">
-                                                    <StaticImage
-                                                        src="../../data/images/icons/heart.png"
-                                                        alt=""
-                                                    />
-                                                </a>
-                                            </PostMetaRightSide>
-                                        </BlogDetailsMetaBox>
-
-                                        <Title>{post.title}</Title>
-                                        <SingleBlogContent
-                                            dangerouslySetInnerHTML={{
-                                                __html:
-                                                    data.markdownRemark.html,
-                                            }}
-                                        />
-
-                                        <CategorySocialContent>
-                                            <PostCategoryItems>
-                                                <span>Tags:</span>
-                                                {post.tags.map((tag, i) => (
-                                                    <Link
-                                                        key={i}
-                                                        to={`/tag/${slugify(
-                                                            tag
-                                                        )}`}
-                                                    >
-                                                        {tag}
-                                                        {i !==
-                                                            post.tags.length -
-                                                                1 && ", "}
-                                                    </Link>
-                                                ))}
-                                            </PostCategoryItems>
-
-                                            <Social
-                                                sx={{ mt: ["30px", "0"] }}
-                                                shape="rounded-5"
-                                                space={15}
-                                            >
-                                                <SocialLink
-                                                    href={
-                                                        "https://www.facebook.com/sharer/sharer.php?u=" +
-                                                        baseUrl +
-                                                        pageContext.slug
-                                                    }
-                                                >
-                                                    <i className="icofont-facebook"></i>
-                                                </SocialLink>
-                                                <SocialLink
-                                                    href={
-                                                        "https://twitter.com/share?url=" +
-                                                        baseUrl +
-                                                        pageContext.slug +
-                                                        "&text=" +
-                                                        post.title +
-                                                        "&via" +
-                                                        "twitterHandle"
-                                                    }
-                                                >
-                                                    <i className="icofont-twitter"></i>
-                                                </SocialLink>
-                                                <SocialLink href="https://www.linkedin.com/">
-                                                    <i className="icofont-linkedin"></i>
-                                                </SocialLink>
-                                            </Social>
-                                        </CategorySocialContent>
-
-                                        <CommentArea>
-                                            <CommentTitle>
-                                                Comments
-                                            </CommentTitle>
-                                            <DiscussionEmbed
-                                                shortname={disqusShorttname}
-                                                config={disquscConfig}
-                                            />
-                                        </CommentArea>
-                                    </Content>
-                                </PostDetailsBody>
-                            </PostDetailsContentWrap>
-                        </Col>
-                        <Col lg={4}>
-                            <div className="blog-details-sidebar">
-                                {author && (
-                                    <PostAuthorBox
-                                        postAuthorName={author.name}
-                                        postAuthorImage={author.image}
-                                        postAuthorBio={author.bio}
-                                        postAuthordescription={
-                                            author.description
-                                        }
-                                        authorSlug={author.fields.authorId}
-                                    />
-                                )}
-                                <LatestPostArea />
-                                <StayInTouchs />
-                            </div>
-                        </Col>
+                      <Col lg={8}>
+                          <PostDetailsContentWrap>
+                              <PostDetailsBody>
+                                  <Thumb>
+                                      <GatsbyImage 
+                                      image={coverImage}
+                                      alt={post.title}
+                                      />
+                                  </Thumb>
+                                  <Content>
+                                      <BlogDetailsMetaBox>
+                                          <PostMetaLeftSide>
+                                              <MetaBox>
+                                                <div className="post-category">
+                                                    {post.categories.name}
+                                                </div>
+                                              </MetaBox>
+                                              <BlogDetailsPostAuthor>
+                                                  <div className="post-author">
+                                                  By {" "}
+                                                  {post.authors.firstName} {post.authors.lastName}
+                                                  </div>
+                                              </BlogDetailsPostAuthor>
+                                          </PostMetaLeftSide>
+                                          <PostMetaRightSide>
+                                            <div>
+                                              <i className="icofont-ui-calendar"></i>
+                                              <span className="post-date">{moment(post.createdAt, 'YYYYMMDD').format('MM/DD/YYYY')}</span>
+                                            </div>  
+                                          </PostMetaRightSide>
+                                      </BlogDetailsMetaBox>
+                                      <Title>{post.title}</Title>
+                                      <SingleBlogContent 
+                                        dangerouslySetInnerHTML={{
+                                            __html: post.content.data.content
+                                        }} 
+                                      />
+                                  </Content>
+                              </PostDetailsBody>
+                          </PostDetailsContentWrap>
+                      </Col>
+                      <Col lg={4}>
+                          <div className="blog-details-sidebar">
+                              {post.authors && (
+                                  <PostAuthorBox
+                                    postAuthorName={`${post.authors.firstName} ${post.authors.lastName}`}
+                                    postAuthorImage={authorImage}
+                                    postAuthorBio={post.authors.biography}
+                                    postAuthordescription={post.authors.profession}
+                                    authorSlug={post.authors.authorId}
+                                  />
+                              )}
+                          </div>
+                      </Col>
                     </Row>
                 </Container>
             </BlogDetailsArea>
         </Layout>
     );
+
 };
 
 SinglePosts.propTypes = {
@@ -233,56 +190,4 @@ SinglePosts.propTypes = {
     pageContext: PropTypes.object,
 };
 
-export const postQuery = graphql`
-    query blogPostBySlug($slug: String!) {
-        markdownRemark(fields: { slug: { eq: $slug } }) {
-            id
-            html
-            fields {
-                slug
-                authorId
-                dateSlug
-            }
-            frontmatter {
-                categories {
-                    name
-                    color
-                }
-                date
-                tags
-                quote_text
-                title
-                author {
-                    name
-                    bio
-                    description
-                    fields {
-                        authorId
-                    }
-                    social {
-                        twitter
-                        google
-                        facebook
-                    }
-                    image {
-                        childImageSharp {
-                            gatsbyImageData(
-                                layout: FIXED
-                                width: 80
-                                height: 80
-                                quality: 100
-                            )
-                        }
-                    }
-                }
-                thume_image {
-                    childImageSharp {
-                        gatsbyImageData(width: 850, height: 400)
-                    }
-                }
-            }
-            excerpt
-        }
-    }
-`;
 export default SinglePosts;

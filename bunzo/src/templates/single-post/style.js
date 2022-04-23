@@ -47,7 +47,9 @@ export const PostMetaLeftSide = styled.div`
     }
 `;
 
-export const BlogDetailsPostAuthor = styled.div``;
+export const BlogDetailsPostAuthor = styled.div`
+  font-size: 12px;
+`;
 export const PostMidSide = styled.div`
     display: flex;
     align-items: center;
@@ -113,6 +115,10 @@ export const MetaBox = styled.div`
 `;
 
 export const PostMetaRightSide = styled.div`
+    .post-date {
+        margin-left: 5px;
+      font-size: 12px;
+    }
     margin-bottom: 10px;
     a {
         margin-left: 10px;
