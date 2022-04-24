@@ -103,15 +103,33 @@ exports.createPages = ({ actions, graphql }) => {
                   }
                 }
               }
+              allStrapiCategory {
+                edges {
+                  node {
+                    slug
+                  }
+                }
+              }
         }
     `).then((res) => {
         if (res.errors) return Promise.reject(res.errors);
         const blogs = res.data.allStrapiBlog.edges;
+        const categories = res.data.allStrapiCategory.edges;
         
         blogs.forEach(({ node }) => {
             createPage({
                 path: `/blog/${node.slug}`,
                 component: templates.singlePost,
+                context: {
+                    slug: node.slug,
+                },
+            });
+        });
+
+        categories.forEach(({ node }) => {
+            createPage({
+                path: `/category/${node.slug}`,
+                component: templates.categoriesPosts,
                 context: {
                     slug: node.slug,
                 },

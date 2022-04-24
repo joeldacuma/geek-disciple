@@ -9,11 +9,19 @@ export const FollowingAuthorArea = styled.div`
 export const AuthorImage = styled.div`
     border: 1px solid #f3f3f3;
     display: inline-block;
-    border-radius: 50000px;
+    border-radius: 50px;
     padding: 11px;
     margin-bottom: 25px;
     img {
-        border-radius: 100%;
+        border-radius: 50%;
+    }
+
+    ${device.medium} {
+        border-radius: 100px;
+    }
+
+    ${device.large} {
+        border-radius: 200px;
     }
 `;
 export const AuthorTitle = styled.div`

@@ -23,7 +23,7 @@ import {
 } from "./style";
 const LargeSinglePosts = ({
     title,
-    thume_image,
+    thumb_image,
     slug,
     body,
     date,
@@ -32,28 +32,19 @@ const LargeSinglePosts = ({
     dateSlug,
     authorId,
 }) => {
-    const image = getImage(thume_image);
+    const image = getImage(thumb_image);
     return (
         <LargeBlogPostWrap>
             <LargeThum>
-                <Link to={`/${slug}`}>
-                    <GatsbyImage image={image} alt="" />
-                </Link>
+                <GatsbyImage image={image} alt={title} />
             </LargeThum>
             <AuthorBlogPostContent>
                 <BlogDetailsMetaBox>
                     <PostMetaLeftSide>
                         <BlogPostCategory>
-                            {categories &&
-                                categories.map((cat, i) => (
-                                    <Link
-                                        key={i}
-                                        to={`/category/${slugify(cat.name)}`}
-                                        className={`${cat.color}`}
-                                    >
-                                        {cat.name}
-                                    </Link>
-                                ))}
+                            <Link>
+                              {categories.name}
+                            </Link>
                         </BlogPostCategory>
                         <BlogPostAuthor>
                             By{" "}
@@ -118,7 +109,7 @@ LargeSinglePosts.propTypes = {
     date: PropTypes.string,
     slug: PropTypes.string,
     dateSlug: PropTypes.string,
-    categories: PropTypes.array,
+    categories: PropTypes.object,
     body: PropTypes.string,
     authorSlug: PropTypes.string,
     authorId: PropTypes.string,

@@ -54,17 +54,6 @@ const PostAuthorBox = ({
                         </SocialLink>
                     </Social>
                 </AuthorPostShare>
-
-                <ButtonBox>
-                    <Button
-                        path={`/profile/${authorSlug}`}
-                        size="large"
-                        sx={{ fontSize: "14px !important" }}
-                    >
-                        View Profile
-                        <i className="icofont-long-arrow-right"></i>
-                    </Button>
-                </ButtonBox>
             </AuthorDetails>
         </FollowingAuthorArea>
     );

@@ -7,11 +7,10 @@ import PageBreadcrumb from "@components/pagebreadcrumb";
 import Social, { SocialLink } from "../../components/social";
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { Row, Container, Col } from "react-bootstrap";
-import { slugify } from "@utils/functions";
 import StayInTouchs from "@components/stay-in-touch";
 import LatestPostArea from "../../container/latest-post";
 import PostAuthorBox from "../../components/post-author";
-import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { DiscussionEmbed } from "disqus-react";
 import {
     SingleBlogContent,
@@ -37,7 +36,7 @@ import {
 } from "./style";
 import * as moment from "moment";
 
-const SinglePosts = ({ data, location, pageContext }) => {
+const SinglePosts = ({ location, pageContext }) => {
 const postsQuery = useStaticQuery(graphql`
 query AllBlogsPost {
 allStrapiBlog {
@@ -99,21 +98,7 @@ allStrapiBlog {
     const post = postData.node;
     const coverImage = getImage(post.cover.localFile);
     const authorImage = getImage(post.authors.profile.localFile);
-    // const { authorId, dateSlug } = data.markdownRemark.fields;
-    // const { author } = post;
-
-    // const image = getImage(post.thume_image.childImageSharp);
-
-    // // Social Share
-    // const baseUrl = "https://hasthems.com";
-
-    // // Disqus Comments add
-    // const disqusShorttname = "mitech-1";
-    // const disquscConfig = {
-    //     identifier: data.markdownRemark.id,
-    //     title: post.title,
-    //     url: baseUrl + "/" + pageContext.slug,
-    //};
+    console.log(coverImage);
 
     return (
         <Layout>
