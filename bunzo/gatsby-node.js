@@ -127,157 +127,17 @@ exports.createPages = ({ actions, graphql }) => {
         });
 
         categories.forEach(({ node }) => {
-            createPage({
-                path: `/category/${node.slug}`,
-                component: templates.categoriesPosts,
-                context: {
-                    slug: node.slug,
-                },
-            });
+            const categoryBlog = blogs.filter((blog) => blog.node.categories.slug === node.slug);
+
+            if (categoryBlog.length > 0) {
+                createPage({
+                    path: `/category/${node.slug}`,
+                    component: templates.categoriesPosts,
+                    context: {
+                        slug: node.slug,
+                    },
+                });
+            }
         });
     });
-
-    // return graphql(`
-    //     {
-    //         allMarkdownRemark {
-    //             edges {
-    //                 node {
-    //                     frontmatter {
-    //                         tags
-    //                     }
-    //                     fields {
-    //                         slug
-    //                         authorId
-    //                         dateSlug
-    //                         cats
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `).then((res) => {
-    //     if (res.errors) return Promise.reject(res.errors);
-
-    //     // Create Single Blog Post Page
-    //     const posts = res.data.allMarkdownRemark.edges;
-
-    //     posts.forEach(({ node }) => {
-    //         createPage({
-    //             path: node.fields.slug,
-    //             component: templates.singlePost,
-    //             context: {
-    //                 // Pssing slug for Templates to use to get post
-    //                 slug: node.fields.slug,
-    //             },
-    //         });
-    //     });
-
-    //     // Create Authors Page
-    //     let authors = [];
-    //     _.each(posts, (edge) => {
-    //         if (_.get(edge, "node.fields.authorId")) {
-    //             authors = authors.concat(edge.node.fields.authorId);
-    //         }
-    //     });
-
-    //     authors = _.uniq(authors);
-    //     authors.forEach((author) => {
-    //         createPage({
-    //             path: `/profile/${author}`,
-    //             component: templates.authorPage,
-    //             context: {
-    //                 author,
-    //             },
-    //         });
-    //     });
-
-    //     // Get all Tag
-    //     let tags = [];
-    //     _.each(posts, (edge) => {
-    //         if (_.get(edge, "node.frontmatter.tags")) {
-    //             tags = tags.concat(edge.node.frontmatter.tags);
-    //         }
-    //     });
-    //     // Tag Number Count
-    //     let tagPostCounts = {};
-    //     tags.forEach((tag) => {
-    //         tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1;
-    //     });
-    //     tags = _.uniq(tags);
-
-    //     // Tag Post Page Create
-    //     tags.forEach((tag) => {
-    //         createPage({
-    //             path: `/tag/${slugify(tag)}`,
-    //             component: templates.tagPosts,
-    //             context: {
-    //                 tag,
-    //             },
-    //         });
-    //     });
-
-    //     // Category page
-
-    //     let categories = [];
-    //     _.each(posts, (edge) => {
-    //         if (_.get(edge, "node.fields.cats")) {
-    //             categories = categories.concat(edge.node.fields.cats);
-    //         }
-    //     });
-    //     // Categories Number Count
-    //     let catPostCounts = {};
-    //     categories.forEach((cat) => {
-    //         catPostCounts[cat] = (catPostCounts[cat] || 0) + 1;
-    //     });
-    //     categories = _.uniq(categories);
-
-    //     // // Tag Post Page Create
-    //     categories.forEach((cat) => {
-    //         createPage({
-    //             path: `/category/${slugify(cat)}`,
-    //             component: templates.categoriesPosts,
-    //             context: {
-    //                 cat,
-    //             },
-    //         });
-    //     });
-
-    //     // Create Date Page
-    //     let dateSlugs = [];
-    //     _.each(posts, (edge) => {
-    //         if (_.get(edge, "node.fields.dateSlug")) {
-    //             dateSlugs = dateSlugs.concat(edge.node.fields.dateSlug);
-    //         }
-    //     });
-
-    //     dateSlugs = _.uniq(dateSlugs);
-    //     dateSlugs.forEach((dateSlug) => {
-    //         createPage({
-    //             path: `/date/${dateSlug}`,
-    //             component: templates.datePage,
-    //             context: {
-    //                 dateSlug,
-    //             },
-    //         });
-    //     });
-
-    //     // Post List pagintion
-    //     // const postsPerPage = 3;
-    //     // const numberOfPages = Math.ceil(posts.length / postsPerPage);
-    //     // Array.from({ length: numberOfPages }).forEach((_, index) => {
-    //     //     const inFirstPage = index === 0;
-    //     //     const currentPage = index + 1;
-    //     //     if (inFirstPage) return;
-    //     //     createPage({
-    //     //         path: `/blog/${currentPage}`,
-    //     //         component: templates.categoriePosts,
-    //     //         context: {
-    //     //             limit: postsPerPage,
-    //     //             skip: index * postsPerPage,
-    //     //             currentPage,
-    //     //             numberOfPages,
-    //     //         },
-    //     //     });
-    //     // });
-    // });
 };

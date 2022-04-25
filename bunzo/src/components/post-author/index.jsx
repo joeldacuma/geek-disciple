@@ -22,8 +22,10 @@ const PostAuthorBox = ({
     postAuthorImage,
     postAuthorBio,
     authorSlug,
+    authorSocial
 }) => {
     const image = getImage(postAuthorImage);
+    const { facebook, instagram, linkedin } = authorSocial;
     return (
         <FollowingAuthorArea>
             <AuthorImage>
@@ -40,18 +42,18 @@ const PostAuthorBox = ({
 
                 <AuthorPostShare>
                     <Social sx={{ mt: "20px" }} shape="rounded-5" space={15}>
-                        <SocialLink href="https://www.facebook.com/">
+                        {facebook !== 'none' && 
+                        (<SocialLink href={facebook}>
                             <i className="icofont-facebook"></i>
-                        </SocialLink>
-                        <SocialLink href="https://www.skype.com/">
-                            <i className="icofont-skype"></i>
-                        </SocialLink>
-                        <SocialLink href="https://twitter.com/home/">
-                            <i className="icofont-twitter"></i>
-                        </SocialLink>
-                        <SocialLink href="https://www.linkedin.com/">
+                        </SocialLink>)}
+                        {instagram !== 'none' && 
+                        (<SocialLink href={instagram}>
+                            <i className="icofont-instagram"></i>
+                        </SocialLink>)}
+                        {linkedin !== 'none' && 
+                        (<SocialLink href={linkedin}>
                             <i className="icofont-linkedin"></i>
-                        </SocialLink>
+                        </SocialLink>)}
                     </Social>
                 </AuthorPostShare>
             </AuthorDetails>

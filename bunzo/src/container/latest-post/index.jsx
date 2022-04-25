@@ -6,35 +6,61 @@ import { LatestPostInnerWrap, LatestPostHeader, LatestPostBox } from "./style";
 const LatestPostArea = (props) => {
     const sideLatestPostsQuery = useStaticQuery(graphql`
         query SideLatestPostsQuery {
-            latestPost: allMarkdownRemark(
-                sort: { fields: [frontmatter___date], order: DESC }
+            latestPost: allStrapiBlog(sort: 
+                {fields: createdAt, order: DESC},
                 limit: 5
-            ) {
+                ) {
                 edges {
-                    node {
-                        id
-                        frontmatter {
-                            title
-                            date(formatString: "DD MMMM YYYY")
-                            format
-                            is_featured
-                            thume_image {
-                                childImageSharp {
-                                    gatsbyImageData(
-                                        width: 84
-                                        height: 84
-                                        quality: 100
-                                    )
-                                }
-                            }
-                        }
-                        fields {
-                            slug
-                            dateSlug
-                        }
+                  node {
+                    Videos {
+                      youtube
+                      vimeo
+                      title
                     }
+                    authors {
+                      authorId
+                      lastName
+                      firstName
+                      biography
+                      email
+                      profession
+                      social {
+                        facebook
+                        instagram
+                        linkedin
+                      }
+                      profile {
+                          localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                          }
+                      }
+                    }
+                    categories {
+                      slug
+                      name
+                    }
+                    is_trending_article
+                    is_featured
+                    slug
+                    title
+                    createdAt
+                    cover {
+                      localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                      }
+                    }
+                    content {
+                      data {
+                        content
+                      }
+                    }
+                  }
                 }
-            }
+              }
         }
     `);
     const sideLatestPostsData = sideLatestPostsQuery.latestPost.edges;
@@ -52,13 +78,13 @@ const LatestPostArea = (props) => {
                         return (
                             <SideLatestPosts
                                 key={i}
-                                title={latestPosts.node.frontmatter.title}
+                                title={latestPosts.node.title}
                                 thume_image={
-                                    latestPosts.node.frontmatter.thume_image
+                                    latestPosts.node.cover.localFile
                                 }
-                                date={latestPosts.node.frontmatter.date}
-                                dateSlug={latestPosts.node.fields.dateSlug}
-                                slug={latestPosts.node.fields.slug}
+                                date={latestPosts.node.createdAt}
+                                slug={latestPosts.node.slug}
+                                author={`${latestPosts.node.authors.firstName} ${latestPosts.node.authors.lastName}`}
                             />
                         );
                     })}

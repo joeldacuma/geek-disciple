@@ -21,6 +21,8 @@ import {
     AuthorAction,
     CountNumber,
 } from "./style";
+import * as moment from "moment";
+
 const LargeSinglePosts = ({
     title,
     thumb_image,
@@ -28,7 +30,7 @@ const LargeSinglePosts = ({
     body,
     date,
     categories,
-    authorSlug,
+    authorName,
     dateSlug,
     authorId,
 }) => {
@@ -42,62 +44,26 @@ const LargeSinglePosts = ({
                 <BlogDetailsMetaBox>
                     <PostMetaLeftSide>
                         <BlogPostCategory>
-                            <Link>
-                              {categories.name}
-                            </Link>
+                            {categories.name}
                         </BlogPostCategory>
                         <BlogPostAuthor>
                             By{" "}
-                            <Link to={`/profile/${authorSlug}`}>
-                                {authorId}
-                            </Link>
+                          {authorName}
                         </BlogPostAuthor>
                     </PostMetaLeftSide>
                     <PostMetaRightSide>
                         <PostDate>
-                            <i className="icofont-ui-calendar"></i>
-                            <Link to={`/date/${dateSlug}`}>{date}</Link>
+                          <i className="icofont-ui-calendar"></i>
+                         {moment(date, 'YYYYMMDD').format('MM/DD/YYYY')}
                         </PostDate>
-                        <PostReadTime>10 min read</PostReadTime>
                     </PostMetaRightSide>
                 </BlogDetailsMetaBox>
                 <Title>
-                    <Link to={`/${slug}`}>{title}</Link>
+                    <Link to={`/blog/${slug}`}>{title}</Link>
                 </Title>
-                <DescText>{body}</DescText>
-
-                <LargeBlogPostbottom>
-                    <LargeBlogPostAction>
-                        <AuthorAction>
-                            <StaticImage
-                                src="../../data/images/icons/heart-2.png"
-                                alt=""
-                            />
-                            <CountNumber>8,687</CountNumber>
-                        </AuthorAction>
-                        <AuthorAction>
-                            <StaticImage
-                                src="../../data/images/icons/message.png"
-                                alt=""
-                            />
-                            <CountNumber>9,567</CountNumber>
-                        </AuthorAction>
-                    </LargeBlogPostAction>
-                    <LargeBlogPostAction>
-                        <AuthorAction>
-                            <StaticImage
-                                src="../../data/images/icons/small-bookmark.png"
-                                alt=""
-                            />
-                        </AuthorAction>
-                        <AuthorAction>
-                            <StaticImage
-                                src="../../data/images/icons/download.png"
-                                alt=""
-                            />
-                        </AuthorAction>
-                    </LargeBlogPostAction>
-                </LargeBlogPostbottom>
+                <DescText>
+                    {body}
+                </DescText>
             </AuthorBlogPostContent>
         </LargeBlogPostWrap>
     );

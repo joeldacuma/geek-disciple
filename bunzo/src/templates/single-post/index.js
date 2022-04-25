@@ -98,7 +98,6 @@ allStrapiBlog {
     const post = postData.node;
     const coverImage = getImage(post.cover.localFile);
     const authorImage = getImage(post.authors.profile.localFile);
-    console.log(coverImage);
 
     return (
         <Layout>
@@ -157,8 +156,10 @@ allStrapiBlog {
                                     postAuthorBio={post.authors.biography}
                                     postAuthordescription={post.authors.profession}
                                     authorSlug={post.authors.authorId}
+                                    authorSocial={post.authors.social}
                                   />
                               )}
+                              <LatestPostArea />
                           </div>
                       </Col>
                     </Row>

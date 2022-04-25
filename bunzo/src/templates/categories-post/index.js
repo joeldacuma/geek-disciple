@@ -59,11 +59,7 @@ const CategoriesPosts = ({ data, location, pageContext }) => {
                 }
               }
             }
-            content {
-              data {
-                content
-              }
-            }
+            introduction
           }
         }
       }
@@ -74,9 +70,8 @@ const CategoriesPosts = ({ data, location, pageContext }) => {
     const postsData = [
         ...new Set(flatDeep(posts.map((td) => td.node))),
     ];
-
-    console.log(postsData);
-
+    const filteredData = postsData.filter((data) => data.categories.slug === pageContext.slug);
+    
     return (
         <Layout>
             <SEO title={"Geek Disciple Categories"} pathname="/" />
@@ -86,18 +81,29 @@ const CategoriesPosts = ({ data, location, pageContext }) => {
                   <Row className="gx-5">
                     <Col lg={8} md={7}>
                         <Row>
-                            {postsData.map((blog, i) => {
+                            {filteredData.map((blog, i) => {
                                 return (
                                   <Col lg={12} key={i}>
                                       <LargeSinglePosts
                                         title={blog.title}
                                         thumb_image={blog.cover.localFile}
                                         categories={blog.categories}
+                                        authorName={`${blog.authors.firstName} ${blog.authors.lastName}`}
+                                        date={blog.createdAt}
+                                        body={blog.introduction}
+                                        slug={blog.slug}
                                       />
                                   </Col>
                                 );
                             })}
                         </Row>
+                    </Col>
+                    <Col lg={4} md={5}>
+                      <BlogDetailsRightSidebar
+                        sx={{ mt: "-40px !important" }}
+                      >
+                        <LatestPostArea />
+                      </BlogDetailsRightSidebar>
                     </Col>
                   </Row>
                 </Container>               

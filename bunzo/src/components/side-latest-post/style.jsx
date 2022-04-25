@@ -23,13 +23,18 @@ export const LatestPostThum = styled.div`
 export const LatestPostContent = styled.div`
     margin-left: 20px;
 `;
+export const BlogPostAuthor = styled.span`
+  position: relative;
+  padding-right: 10px;
+  margin-right: 6px;
+`;
 export const Title = styled.h6`
     margin-top: 0px;
     font-size: 15px;
 `;
 export const LatestPostMeta = styled.div`
     font-size: 12px;
-    margin-top: 10px;
+    margin-top: 5px;
 `;
 export const PostDate = styled.span`
     position: relative;

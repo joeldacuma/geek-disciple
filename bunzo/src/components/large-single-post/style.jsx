@@ -26,15 +26,13 @@ export const BlogDetailsMetaBox = styled.div`
 `;
 
 export const PostMetaLeftSide = styled.div``;
-export const BlogPostCategory = styled.span`
-    a {
+export const BlogPostCategory = styled.div`
         height: 50px;
         line-height: 50px;
         padding: 0 20px;
         background-color: #e1f3ff;
         display: inline-block;
         border-radius: 10px;
-    }
 `;
 export const BlogPostAuthor = styled.span`
     margin-left: 15px;
@@ -49,19 +47,6 @@ export const PostDate = styled.span`
     font-size: 13px;
     i {
         margin-right: 5px;
-    }
-    &::after {
-        position: absolute;
-        content: "";
-        right: -0px;
-        top: 50%;
-        height: 4px;
-        width: 4px;
-        background: #000000;
-        border-radius: 50000px;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
     }
 `;
 export const PostReadTime = styled.span`
