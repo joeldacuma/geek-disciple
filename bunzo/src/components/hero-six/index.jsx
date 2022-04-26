@@ -13,8 +13,9 @@ import {
     PostDate,
     ReadTime,
 } from "./style";
+import * as moment from "moment";
 
-const HeroSixPost = ({ title, thume_image, dateSlug, authorSlug, slug }) => {
+const HeroSixPost = ({ title, thume_image, date, postAuthor, slug }) => {
     const images = getImage(thume_image);
     return (
         <Row className="align-items-center">
@@ -30,22 +31,19 @@ const HeroSixPost = ({ title, thume_image, dateSlug, authorSlug, slug }) => {
                     <PostMeta>
                         <BlogPostAuthor>
                             By{" "}
-                            <Link to={`/profile/${authorSlug}`}>
-                                {authorSlug}
-                            </Link>
+                            {postAuthor}
                         </BlogPostAuthor>
                         <PostDate>
-                            <Link to={`/date/${dateSlug}`}>{dateSlug}</Link>
+                           {moment(date, 'YYYYMMDD').format('MM/DD/YYYY')}
                         </PostDate>
-                        <ReadTime>10 min read</ReadTime>
                     </PostMeta>
 
                     <BlogPostTitle>
-                        <Link to={`/${slug}`}>{title}</Link>
+                        <Link to={`/blog/${slug}`}>{title}</Link>
                     </BlogPostTitle>
 
                     <ReadMoreBtn>
-                        <Link to={`/${slug}`}>
+                        <Link to={`/blog/${slug}`}>
                             Read more{" "}
                             <i className="icofont-long-arrow-right"></i>
                         </Link>

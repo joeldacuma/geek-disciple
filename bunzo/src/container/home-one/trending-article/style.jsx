@@ -2,6 +2,7 @@ import styled, { device } from "@theme/utils";
 
 export const TrendingArticleArea = styled.div`
     padding-top: 60px;
+    padding-bottom: 60px;
     ${device.small} {
         padding-top: 80px;
     }

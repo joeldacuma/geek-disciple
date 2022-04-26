@@ -8,34 +8,63 @@ import { HeroSection, SliderNavigation } from "./style";
 const HeroArea = () => {
     const heroSixQuery = useStaticQuery(graphql`
         query HeroSixQuery {
-            HeroPost: allMarkdownRemark {
+            HeroPost: allStrapiBlog {
                 edges {
-                    node {
-                        id
-                        frontmatter {
-                            title
-                            thume_image {
-                                childImageSharp {
-                                    gatsbyImageData(
-                                        width: 570
-                                        height: 425
-                                        quality: 100
-                                    )
-                                }
-                            }
-                        }
-                        fields {
-                            slug
-                            authorId
-                            dateSlug
-                        }
+                  node {
+                    Videos {
+                      youtube
+                      vimeo
+                      title
                     }
+                    authors {
+                      authorId
+                      lastName
+                      firstName
+                      biography
+                      email
+                      profession
+                      social {
+                        facebook
+                        instagram
+                        linkedin
+                      }
+                      profile {
+                          localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                          }
+                      }
+                    }
+                    categories {
+                      slug
+                      name
+                    }
+                    is_trending_article
+                    is_featured
+                    slug
+                    title
+                    createdAt
+                    cover {
+                      localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                      }
+                    }
+                    content {
+                      data {
+                        content
+                      }
+                    }
+                  }
                 }
-            }
+              }
         }
-    `);
+    `); 
 
     const heroData = heroSixQuery.HeroPost.edges;
+    const featuredHeroData = heroData.filter(({ node }) => node.is_featured === true);
 
     return (
         <HeroSection>
@@ -53,24 +82,20 @@ const HeroArea = () => {
                         slidesPerView={1}
                         spaceBetween={0}
                     >
-                        {heroData &&
-                            heroData.map((item, i) => {
+                        {featuredHeroData &&
+                            featuredHeroData.map((item, i) => {
                                 return (
                                     <SwiperSlide key={`trending-${i}`}>
                                         <HeroSixPost
-                                            title={item.node.frontmatter.title}
+                                            title={item.node.title}
                                             thume_image={
-                                                item.node.frontmatter
-                                                    .thume_image
+                                                item.node.cover.localFile
                                             }
-                                            slug={item.node.fields.slug}
-                                            authorSlug={
-                                                item.node.fields.authorId
-                                            }
+                                            slug={item.node.slug}
                                             postAuthor={
-                                                item.node.frontmatter.author
+                                                `${item.node.authors.firstName} ${item.node.authors.lastName}`
                                             }
-                                            dateSlug={item.node.fields.dateSlug}
+                                            date={item.node.createdAt}
                                         />
                                     </SwiperSlide>
                                 );
