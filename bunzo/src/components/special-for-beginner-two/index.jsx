@@ -27,7 +27,7 @@ const SpecialBannerTwo = ({
     return (
         <SingleBannerBlogPost>
             <SpecialBannerPostImage>
-                <Link to={`/${slug}`}>
+                <Link to={`/blog/${slug}`}>
                     <GatsbyImage image={image} alt="Banner Blog image" />
                 </Link>
             </SpecialBannerPostImage>
