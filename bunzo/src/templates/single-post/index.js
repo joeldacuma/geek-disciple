@@ -167,7 +167,6 @@ allStrapiBlog {
             </BlogDetailsArea>
         </Layout>
     );
-
 };
 
 SinglePosts.propTypes = {
