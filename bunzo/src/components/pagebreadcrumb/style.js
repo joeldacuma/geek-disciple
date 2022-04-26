@@ -20,10 +20,10 @@ export const PageTitleContent = styled.div`
             list-style: none;
             display: flex;
             align-items: center;
-            color: #222;
+            color: #ffff;
 
             padding: 10px 20px;
-            background-color: #ffebdf;
+            background-color: #41273c;
             border-radius: 15px;
 
             & .breadcrumb__separator {
@@ -31,12 +31,12 @@ export const PageTitleContent = styled.div`
                 margin-left: 10px;
             }
             .breadcrumb__link {
-                color: #222;
+                color: #ffff;
                 font-size: 15px;
                 font-weight: 500;
                 margin-bottom: 8px;
                 &.breadcrumb__link__active {
-                    color: #fea444;
+                    color: #ffff;
                 }
             }
         }

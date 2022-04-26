@@ -119,9 +119,9 @@ allStrapiBlog {
                                       <BlogDetailsMetaBox>
                                           <PostMetaLeftSide>
                                               <MetaBox>
-                                                <div className="post-category">
+                                                <Link to={`/category/${post.categories.slug}`} className="post-category">
                                                     {post.categories.name}
-                                                </div>
+                                                </Link>
                                               </MetaBox>
                                               <BlogDetailsPostAuthor>
                                                   <div className="post-author">

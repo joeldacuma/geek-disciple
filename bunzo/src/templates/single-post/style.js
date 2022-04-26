@@ -89,8 +89,8 @@ export const MetaBox = styled.div`
         text-align: center;
         padding: 4px 5px;
         border-radius: 10px;
-        color: #222;
-        background-color: #ffc4a0;
+        color: #ffff;
+        background-color: #41273c;
     }
     .post-author {
         color: #595959;
