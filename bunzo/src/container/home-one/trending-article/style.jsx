@@ -14,10 +14,14 @@ export const TrendingArticleRow = styled.div`
     margin-left: -15px;
     flex-wrap: wrap;
     ${device.large} {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 `;
 export const TrendingArticleLeftSide = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
     max-width: 100%;
     padding-left: 15px;
     padding-right: 15px;
@@ -25,7 +29,7 @@ export const TrendingArticleLeftSide = styled.div`
         max-width: 50%;
     }
     ${device.xlarge} {
-        max-width: 515px;
+        max-width: 675px;
     }
 `;
 export const TrendingArticleRightSide = styled.div`

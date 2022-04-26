@@ -12,7 +12,7 @@ import { BlogDetailsArea, BlogDetailsRightSidebar } from "./style";
 import { flatDeep } from "../../utils/functions";
 import { StaticImage, GatsbyImage } from "gatsby-plugin-image";
 
-const CategoriesPosts = ({ data, location, pageContext }) => {
+const CategoriesPosts = ({ location, pageContext }) => {
     const postsQuery = useStaticQuery(graphql`
     query AllCategoryPosts {
     allStrapiBlog {

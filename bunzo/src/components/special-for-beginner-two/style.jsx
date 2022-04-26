@@ -25,7 +25,9 @@ export const DecText = styled.p`
     margin-top: 10px;
 `;
 export const BannerPostMeta = styled.div`
-    margin-top: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
 `;
 export const PostDate = styled.span`
     position: relative;
@@ -33,18 +35,21 @@ export const PostDate = styled.span`
     margin-right: 10px;
     font-size: 13px;
     color: #0f034a;
-    &::after {
-        position: absolute;
-        content: "";
-        right: -0px;
-        top: 50%;
-        height: 4px;
-        width: 4px;
-        background: #000000;
-        border-radius: 50000px;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-    }
 `;
 export const ReadTime = styled.span``;
+export const MetaBox = styled.span`
+  position: relative;
+  align-items: center;
+  display: flex;
+  margin-right: 10px;
+  justify-content: start;
+    .post-category {
+      min-width: 100px;
+      text-align: center;
+      padding: 4px 5px;
+      border-radius: 10px;
+      color: #ffff;
+      background-color: #41273c;
+    }
+`;
+export const DescText = styled.p``;

@@ -6,41 +6,71 @@ import { SpecialForBeginnerArea, SectionTitle, Title } from "./style";
 
 const SpecialForBeginner = () => {
     const specialForBeginnerQuery = useStaticQuery(graphql`
-        query SpecialForBeginnerTowQuery {
-            specialBeginnerTwo: allMarkdownRemark(
-                filter: {
-                    frontmatter: { is_special_for_beginner: { eq: true } }
-                }
-                limit: 3
-                skip: 2
-            ) {
+        query SpecialTrendingQuery {
+            TrendingBLog: allStrapiBlog(sort: 
+                {
+                 fields: createdAt, 
+                 order: DESC,
+                },
+                filter: { is_trending_article: { eq: true } },
+                limit: 6
+                ) {
                 edges {
-                    node {
-                        frontmatter {
-                            title
-                            date
-                            thume_image {
-                                childImageSharp {
-                                    gatsbyImageData(
-                                        width: 372
-                                        height: 272
-                                        quality: 100
-                                    )
-                                }
-                            }
-                        }
-                        fields {
-                            slug
-                            authorId
-                            dateSlug
-                        }
+                  node {
+                    Videos {
+                      youtube
+                      vimeo
+                      title
                     }
+                    authors {
+                      authorId
+                      lastName
+                      firstName
+                      biography
+                      email
+                      profession
+                      social {
+                        facebook
+                        instagram
+                        linkedin
+                      }
+                      profile {
+                          localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                          }
+                      }
+                    }
+                    categories {
+                      slug
+                      name
+                    }
+                    is_trending_article
+                    is_featured
+                    introduction
+                    slug
+                    title
+                    createdAt
+                    cover {
+                      localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                      }
+                    }
+                    content {
+                      data {
+                        content
+                      }
+                    }
+                  }
                 }
-            }
+              }
         }
     `);
-    const specialBeginnerTwoData =
-        specialForBeginnerQuery.specialBeginnerTwo.edges;
+    const specialTrendingData =
+          specialForBeginnerQuery.TrendingBLog.edges;
 
     return (
         <SpecialForBeginnerArea>
@@ -48,24 +78,25 @@ const SpecialForBeginner = () => {
                 <Row>
                     <Col lg={12}>
                         <SectionTitle>
-                            <Title>Special For Beginner</Title>
+                            <Title>Latest Article</Title>
                         </SectionTitle>
                     </Col>
                 </Row>
                 <Row className="row--35">
-                    {specialBeginnerTwoData &&
-                        specialBeginnerTwoData.map((item, i) => {
+                    {specialTrendingData &&
+                        specialTrendingData.map((item, i) => {
                             return (
                                 <Col lg={4} md={6} sm={6} key={i}>
                                     <SpecialBannerTwo
-                                        title={item.node.frontmatter.title}
+                                        title={item.node.title}
                                         thume_image={
-                                            item.node.frontmatter.thume_image
+                                            item.node.cover.localFile
                                         }
-                                        date={item.node.frontmatter.date}
-                                        slug={item.node.fields.slug}
-                                        authorSlug={item.node.fields.authorId}
-                                        dateSlug={item.node.fields.dateSlug}
+                                        date={item.node.createdAt}
+                                        slug={item.node.slug}
+                                        author={`${item.node.authors.firstName} ${item.node.authors.lastName}`}
+                                        category={item.node.categories}
+                                        body={item.node.introduction}
                                     />
                                 </Col>
                             );

@@ -44,7 +44,6 @@ const TrendingTopics = () => {
     const categories = [
         ...new Set(flatDeep(trendingTopicsData.map((td) => td.node))),
     ];
-    console.log(categories);
 
     return (
         <BgGray1Area>

@@ -9,15 +9,19 @@ import {
     BannerPostMeta,
     PostDate,
     ReadTime,
+    MetaBox,
+    DescText
 } from "./style";
+import * as moment from "moment";
+
 const SpecialBannerTwo = ({
     thume_image,
     title,
-    body,
     date,
-    authorSlug,
-    dateSlug,
+    author,
     slug,
+    category,
+    body
 }) => {
     const image = getImage(thume_image);
     return (
@@ -30,17 +34,24 @@ const SpecialBannerTwo = ({
 
             <SpecialBannerPostContent>
                 <BannerPostAuthor>
-                    By <Link to={`/profile/${authorSlug}`}>{authorSlug}</Link>
+                    By {author}
                 </BannerPostAuthor>
                 <Title>
-                    <Link to={`/${slug}`}>{title}</Link>
+                    <Link to={`/blog/${slug}`}>{title}</Link>
                 </Title>
                 <BannerPostMeta>
+                    <MetaBox>
+                        <Link to={`/category/${category.slug}`} className="post-category">
+                            {category.name}             
+                        </Link>
+                    </MetaBox>
                     <PostDate>
-                        <Link to={`/date/${dateSlug}`}>{date}</Link>
+                        {moment(date, 'YYYYMMDD').format('MM/DD/YYYY')}
                     </PostDate>
-                    <ReadTime>10 min read</ReadTime>
                 </BannerPostMeta>
+                <DescText>
+                    {body}
+                </DescText>
             </SpecialBannerPostContent>
         </SingleBannerBlogPost>
     );
