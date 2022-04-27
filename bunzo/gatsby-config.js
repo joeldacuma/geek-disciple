@@ -83,6 +83,9 @@ module.exports = {
                                 },
                                 Menu: {
                                     populate: '*'
+                                },
+                                midBannerAds: {
+                                    populate: '*'
                                 }
                             }
                         }

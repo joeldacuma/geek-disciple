@@ -3,12 +3,14 @@ import styled, { device } from "@theme/utils";
 import NewsletterBgTwo from "../../data/images/banners/home-two-newsletter-bg.jpg";
 
 export const NewsletterSubscribeInner = styled.div`
-    background-color: #ddd;
-    position: relative;
-    background: url(${NewsletterBgTwo});
-    border-radius: 10px;
-    background-size: cover;
-    background-position: center;
+   .background-newsletter {
+      background-color: #ddd;
+      position: relative;
+      border-radius: 10px;
+      background: url(${props => props.backgroundImage});
+      background-size: cover;
+      background-position: center;
+   }
 `;
 export const Title = styled.h2`
     color: #ffffff;
@@ -23,9 +25,12 @@ export const Title = styled.h2`
 `;
 export const SectionTitle = styled.div``;
 export const NewsletterInputBox = styled.div`
-    max-width: 730px;
     margin: auto;
     text-align: center;
-    padding: 80px 15px;
 `;
-export const ButtonBox = styled.div``;
+export const ButtonBox = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;

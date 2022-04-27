@@ -8,32 +8,28 @@ import {
     NewsletterInputBox,
     ButtonBox,
 } from "./style";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const NewsletterSubscribeTwo = () => {
+const NewsletterSubscribeTwo = ({ image, link, buttonText }) => {
+    const backgroundImage = getImage(image.localFile);
+    console.log(image);
     return (
         <NewsletterSubscribeInner>
             <NewsletterInputBox>
-                <SectionTitle>
-                    <Title>
-                        28k People{" "}
-                        <span className="normal-width">
-                            Receive Weekly WordPress Related Newsletter
-                        </span>
-                        .
-                    </Title>
-                </SectionTitle>
-                <ButtonBox>
+                <GatsbyImage className="background-newsletter" image={backgroundImage} />
+                {buttonText && 
+                (<ButtonBox>
                     <Button
                         sx={{ mt: "30px", color: "#fff" }}
-                        path="/"
+                        path={link}
                         size="large"
                         color="primary"
                         shape="rounded-10"
                     >
                         {" "}
-                        Subscribe Now
+                        {buttonText}
                     </Button>
-                </ButtonBox>
+                </ButtonBox>)}
             </NewsletterInputBox>
         </NewsletterSubscribeInner>
     );
