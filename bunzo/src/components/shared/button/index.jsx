@@ -70,6 +70,7 @@ const Button = ({
             type={type}
             {...buttonProps}
             sx={sx}
+            {...props}
         >
             {children}
         </StyledButton>
@@ -92,6 +93,7 @@ Button.propTypes = {
         "border-normal",
         "bgSuccess",
         "bg-white",
+        "gray"
     ]),
     size: PropTypes.oneOf(["xsmall", "small", "medium", "large", "fullwidth"]),
     shape: PropTypes.oneOf([
@@ -104,6 +106,7 @@ Button.propTypes = {
     variant: PropTypes.oneOf(["outlined", "iconButton"]),
     path: PropTypes.string,
     label: PropTypes.string,
+    disabled: PropTypes.bool,
 };
 
 Button.defaultProps = {

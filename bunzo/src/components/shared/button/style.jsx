@@ -21,7 +21,7 @@ export const createStyles = (theme, color, size, shape, variant) => css`
     css`
         background-color: ${theme.colors.primary};
         font-weight: 500;
-        color: #222;
+        color: #fff;
         border: none;
         &:focus {
             outline: none !important;
@@ -76,6 +76,20 @@ export const createStyles = (theme, color, size, shape, variant) => css`
         &:focus {
             background-color: #222;
             color: #fff;
+        }
+    `}
+    ${color === "gray" &&
+    css`
+        background-color: gray;
+        border-color: #fff;
+        padding: 10px 20px;
+        font-size: 15px;
+        min-height: 45px;
+        min-width: 150px;
+        color: #222;
+
+        &:hover {
+            background-color: gray;
         }
     `}
     

@@ -69,3 +69,12 @@ export const NewsletterInnerImage = styled.div`
         z-index: 0;
     }
 `;
+export const NewsLetterMessage = styled.span`
+  color: ${props => props.isEmail ? "#222" : "red"};
+  margin-top: 3px;
+  font-size: 13px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+`

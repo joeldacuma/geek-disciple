@@ -12,11 +12,11 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const NewsletterSubscribeTwo = ({ image, link, buttonText }) => {
     const backgroundImage = getImage(image.localFile);
-    console.log(image);
+
     return (
         <NewsletterSubscribeInner>
             <NewsletterInputBox>
-                <GatsbyImage className="background-newsletter" image={backgroundImage} />
+                <GatsbyImage className="background-newsletter" alt="newsletter" image={backgroundImage} />
                 {buttonText && 
                 (<ButtonBox>
                     <Button
