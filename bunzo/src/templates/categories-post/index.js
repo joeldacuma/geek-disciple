@@ -30,11 +30,6 @@ const CategoriesPosts = ({ location, pageContext }) => {
               biography
               email
               profession
-              social {
-                facebook
-                instagram
-                linkedin
-              }
               profile {
                   localFile {
                     childImageSharp {

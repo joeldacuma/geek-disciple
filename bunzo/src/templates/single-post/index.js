@@ -55,9 +55,8 @@ allStrapiBlog {
           email
           profession
           social {
-            facebook
-            instagram
-            linkedin
+            icon
+            iconLink
           }
           profile {
               localFile {

@@ -29,11 +29,6 @@ const SpecialForBeginner = () => {
                       biography
                       email
                       profession
-                      social {
-                        facebook
-                        instagram
-                        linkedin
-                      }
                       profile {
                           localFile {
                             childImageSharp {

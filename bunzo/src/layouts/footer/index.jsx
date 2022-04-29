@@ -27,157 +27,79 @@ import {
     CopyrightText,
     ButtonRightBox,
 } from "./style";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Footer = () => {
     const footerQuery = useStaticQuery(graphql`
         query FooterQuery {
-            footerJson {
-                id
-                quickLink {
-                    path
-                    text
+            strapiFooter {
+                footerLogo {
+                    localFile{
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
                 }
-                quickLinkTwo {
-                    path
-                    text
+                copyrightText
+                footerTitle
+                links {
+                  icon
+                  iconLink
                 }
-                quickLinkThree {
-                    path
-                    text
-                }
-
-                footerAbout
+                tagline
             }
         }
     `);
-    const {
-        footerAbout,
-        quickLink,
-        quickLinkTwo,
-        quickLinkThree,
-    } = footerQuery.footerJson;
+    
+    const footerData = footerQuery.strapiFooter;
+    const footerSocialLinks = footerData.links;
+    const footerLogo = getImage(footerData.footerLogo.localFile);
 
     return (
         <FooterWrap>
             <FooterTopArea>
                 <Container>
                     <Row>
-                        <Col lg={3} md={6} sm={6}>
+                        <Col lg={6} md={6} sm={6}>
                             <FooterWidget>
                                 <FooterLogo>
                                     <Link to="/">
-                                        <StaticImage
-                                            src="../../data/images/logo/logo-white.png"
-                                            alt=""
+                                        <GatsbyImage
+                                            image={footerLogo}
+                                            alt="footer-logo"
                                         />
                                     </Link>
                                 </FooterLogo>
-                                <FooterDec>{footerAbout}</FooterDec>
-                                <Social
-                                    sx={{ mt: "30px" }}
-                                    shape="rounded-5"
-                                    space={15}
-                                    bgColor="black"
-                                >
-                                    <SocialLink href="https://www.facebook.com/">
-                                        <i className="icofont-facebook"></i>
-                                    </SocialLink>
-                                    <SocialLink href="https://www.skype.com/">
-                                        <i className="icofont-skype"></i>
-                                    </SocialLink>
-                                    <SocialLink href="https://twitter.com/home/">
-                                        <i className="icofont-twitter"></i>
-                                    </SocialLink>
-                                    <SocialLink href="https://www.linkedin.com/">
-                                        <i className="icofont-linkedin"></i>
-                                    </SocialLink>
-                                </Social>
+                                <FooterDec>{footerData.tagline}</FooterDec>
                             </FooterWidget>
                         </Col>
-                        <Col lg={4} md={6} sm={6}>
-                            <FooterWidget className="footer-subscribe-center">
-                                <FooterWidgetTitle>
-                                    <WidgetTitle>Subscribe</WidgetTitle>
-                                </FooterWidgetTitle>
-                                <FooterSubscribeWrap>
-                                    <SingleInput>
-                                        <Input
-                                            type="text"
-                                            placeholder="Your Name"
-                                        />
-                                    </SingleInput>
-                                    <SingleInput>
-                                        <Input
-                                            type="email"
-                                            placeholder="Email Address"
-                                        />
-                                    </SingleInput>
-                                    <ButtonBox>
-                                        <Button
-                                            size="large"
-                                            shape="rounded-10"
-                                            type="submit"
-                                        >
-                                            Subscribe Now
-                                        </Button>
-                                    </ButtonBox>
-                                </FooterSubscribeWrap>
-                            </FooterWidget>
-                        </Col>
-                        <Col lg={5}>
+                        <Col lg={6}>
                             <FooterMenuWidget>
-                                <SingleFooterMenu>
-                                    <FooterWidgetTitle>
-                                        <WidgetTitle>Company</WidgetTitle>
-                                    </FooterWidgetTitle>
-
-                                    <FooterWidgetMenuList>
-                                        {quickLink &&
-                                            quickLink.map((linkItem, i) => (
-                                                <NavItem key={`id-${i}-one`}>
-                                                    <Link to={linkItem.path}>
-                                                        {linkItem.text}
-                                                    </Link>
-                                                </NavItem>
-                                            ))}
-                                    </FooterWidgetMenuList>
-                                </SingleFooterMenu>
                                 <SingleFooterMenu>
                                     <FooterWidgetTitle>
                                         <WidgetTitle>Quick Links</WidgetTitle>
                                     </FooterWidgetTitle>
-
+                                    <Social
+                                        sx={{ mt: "30px" }}
+                                        shape="rounded-5"
+                                        space={15}
+                                        bgColor="black"
+                                    >
+                                      {(footerSocialLinks.length > 0) 
+                                       && footerSocialLinks.map((link, i) => {
+                                          return (
+                                            <SocialLink key={i} href={link.iconLink}>
+                                                <i className={`icofont-${link.icon}`}></i>
+                                            </SocialLink>
+                                          )  
+                                      })
+                                      }
+                                    </Social>
                                     <FooterWidgetMenuList>
-                                        {quickLinkTwo &&
-                                            quickLinkTwo.map((linkItem, i) => (
-                                                <NavItem key={`id-${i}-one`}>
-                                                    <Link to={linkItem.path}>
-                                                        {linkItem.text}
-                                                    </Link>
-                                                </NavItem>
-                                            ))}
-                                    </FooterWidgetMenuList>
-                                </SingleFooterMenu>
-                                <SingleFooterMenu>
-                                    <FooterWidgetTitle>
-                                        <WidgetTitle>Category</WidgetTitle>
-                                    </FooterWidgetTitle>
-
-                                    <FooterWidgetMenuList>
-                                        {quickLinkThree &&
-                                            quickLinkThree.map(
-                                                (linkItem, i) => (
-                                                    <NavItem
-                                                        key={`id-${i}-one`}
-                                                    >
-                                                        <Link
-                                                            to={linkItem.path}
-                                                        >
-                                                            {linkItem.text}
-                                                        </Link>
-                                                    </NavItem>
-                                                )
-                                            )}
+                                        <CopyrightText>
+                                            &copy; {new Date().getFullYear()}
+                                            {` ${footerData.copyrightText}`}
+                                        </CopyrightText>
                                     </FooterWidgetMenuList>
                                 </SingleFooterMenu>
                             </FooterMenuWidget>
@@ -185,46 +107,6 @@ const Footer = () => {
                     </Row>
                 </Container>
             </FooterTopArea>
-            <FooterBottomArea>
-                <Container>
-                    <Row>
-                        <Col xs={12} sx={{ textAlign: "center" }}>
-                            <FooterBottomInner>
-                                <CopyrightText>
-                                    &copy; {new Date().getFullYear()}
-                                    <a
-                                        href="https://hasthemes.com/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {" "}
-                                        Bunzo{" "}
-                                    </a>
-                                    . Made with <HeartIcon /> by{" "}
-                                    <a
-                                        href="https://hasthemes.com/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        HasThemes
-                                    </a>
-                                </CopyrightText>
-                                <ButtonRightBox>
-                                    <Button
-                                        path="/contact-us"
-                                        size="large"
-                                        shape="rounded-10"
-                                    >
-                                        {" "}
-                                        Share your thinking{" "}
-                                        <i className="icofont-long-arrow-right"></i>
-                                    </Button>
-                                </ButtonRightBox>
-                            </FooterBottomInner>
-                        </Col>
-                    </Row>
-                </Container>
-            </FooterBottomArea>
         </FooterWrap>
     );
 };

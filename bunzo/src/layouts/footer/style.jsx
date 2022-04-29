@@ -6,8 +6,8 @@ export const FooterTopArea = styled.div`
     padding: 60px 0 90px;
 `;
 export const FooterWidget = styled.div`
-    margin-top: 30px;
-    max-width: 280px;
+    max-width: 260px;
+    margin-top: -12px;
     &.footer-subscribe-center {
         margin-left: 0;
 
@@ -24,7 +24,7 @@ export const FooterDec = styled.p`
 `;
 
 export const FooterLogo = styled.div`
-    margin-bottom: 20px;
+
 `;
 
 export const FooterSubscribeWrap = styled.div``;
@@ -67,9 +67,21 @@ export const SingleFooterMenu = styled.div`
     padding-left: 10px;
     padding-right: 10px;
     margin-top: 30px;
-    width: 50%;
+    width: 70%;
+
     ${device.small} {
-        width: 33.3333%;
+        width: 40.3333%;
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+    ${device.large} {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 10px;
+    }
+
+    ${device.large} {
+        width: 100%;
         padding-left: 5px;
         padding-right: 10px;
     }
@@ -122,6 +134,7 @@ export const CopyrightText = styled.p`
     ${device.medium} {
         padding: 0;
         margin-top: 0px;
+        margin-top: 20px;
     }
 `;
 

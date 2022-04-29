@@ -15,6 +15,7 @@ const SocialLink = ({
     space,
     shape,
     bgColor,
+    ...props
 }) => {
     const socialProps = {
         css: (theme) =>
@@ -29,6 +30,7 @@ const SocialLink = ({
             rel="noopener noreferrer"
             aria-label={label}
             {...socialProps}
+            {...props}
         >
             {children}
         </StyledLink>

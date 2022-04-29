@@ -25,7 +25,7 @@ const PostAuthorBox = ({
     authorSocial
 }) => {
     const image = getImage(postAuthorImage);
-    const { facebook, instagram, linkedin } = authorSocial;
+
     return (
         <FollowingAuthorArea>
             <AuthorImage>
@@ -42,7 +42,15 @@ const PostAuthorBox = ({
 
                 <AuthorPostShare>
                     <Social sx={{ mt: "20px" }} shape="rounded-5" space={15}>
-                        {facebook !== 'none' && 
+                        {(authorSocial.length > 0) && authorSocial.map((link, i) => {
+                            return (
+                              <SocialLink key={i} href={link.iconLink}>
+                                <i className={`icofont-${link.icon}`}></i>
+                              </SocialLink>
+                            )
+                        })
+                        }
+                        {/* {facebook !== 'none' && 
                         (<SocialLink href={facebook}>
                             <i className="icofont-facebook"></i>
                         </SocialLink>)}
@@ -53,7 +61,7 @@ const PostAuthorBox = ({
                         {linkedin !== 'none' && 
                         (<SocialLink href={linkedin}>
                             <i className="icofont-linkedin"></i>
-                        </SocialLink>)}
+                        </SocialLink>)} */}
                     </Social>
                 </AuthorPostShare>
             </AuthorDetails>

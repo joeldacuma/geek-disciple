@@ -89,6 +89,20 @@ module.exports = {
                                 }
                             }
                         }
+                    },
+                    {
+                        singularName: 'footer',
+                        queryParams: {
+                            publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
+                            populate: {
+                                footerLogo: {
+                                    populate: '*'
+                                },
+                                links: {
+                                    populate: '*'
+                                },
+                            }
+                        }
                     }
                ],
                queryLimit: 1000,

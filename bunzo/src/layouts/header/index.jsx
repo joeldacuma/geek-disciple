@@ -24,9 +24,7 @@ import {
 const Header = () => {
     const allmenuData = useStaticQuery(graphql`
     query AllHomeQuery {
-        allStrapiHome {
-          edges {
-            node {
+        strapiHome {
               Menu {
                 link
                 isSubmenu
@@ -42,14 +40,12 @@ const Header = () => {
                 url
                 size
               }
-            }
-          }
         }
       }      
     `);
-    const menuEdges = allmenuData.allStrapiHome.edges;
-    const menuData = menuEdges[0].node.Menu;
-    const logoData = menuEdges[0].node.websiteLogo;
+    const menuEdges = allmenuData.strapiHome;
+    const menuData = menuEdges.Menu;
+    const logoData = menuEdges.websiteLogo;
     const headerLogo = logoData.url;
 
     // OfCanvas Menu
