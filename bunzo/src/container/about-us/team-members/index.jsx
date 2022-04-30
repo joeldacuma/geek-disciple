@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import TeamItems from "../../../components/team-item";
 import { graphql, useStaticQuery } from "gatsby";
 import { TeamArea } from "./style";
+import { flatDeep } from "../../../utils/functions";
 
 const TeamMembersArea = () => {
     // const teamMemberQuery = useStaticQuery(graphql`
@@ -11,27 +12,33 @@ const TeamMembersArea = () => {
 
     const teamMembersQuery = useStaticQuery(graphql`
         query TeamMembersQuery {
-            teamJson {
-                section_title {
-                    subTitle
-                    title
-                }
-                team {
-                    name
-                    designation
-                    images {
-                        childrenImageSharp {
-                            gatsbyImageData(width: 600, quality: 100)
+            allStrapiAuthor {
+                edges {
+                  node {
+                    firstName
+                    lastName
+                    profession
+                    social {
+                        icon
+                        iconLink
+                    }
+                    profile {
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
                         }
                     }
+                  }
                 }
-            }
+              }
         }
     `);
-    const {
-        section_title: { title, subTitle },
-        team,
-    } = teamMembersQuery.teamJson;
+    
+    const authors = teamMembersQuery.allStrapiAuthor.edges;
+    const authorsData = [
+        ...new Set(flatDeep(authors.map((td) => td.node))),
+    ];
 
     return (
         <TeamArea>
@@ -39,21 +46,19 @@ const TeamMembersArea = () => {
                 <Row>
                     <Col lg={12}>
                         <div className="section-title text-center">
-                            <h6 className="sub-title-primary mb-20">
-                                {subTitle}
-                            </h6>
-                            <h2 className="title">{title}</h2>
+                            <h2 className="title">Our Content Creators</h2>
                         </div>
                     </Col>
                 </Row>
                 <Row className="gx-5">
-                    {team &&
-                        team.map((itemData, i) => (
+                    {authorsData &&
+                        authorsData.map((author, i) => (
                             <Col sm={6} md={6} lg={3} key={i}>
                                 <TeamItems
-                                    images={itemData.images.childrenImageSharp}
-                                    name={itemData.name}
-                                    designation={itemData.designation}
+                                    images={author.profile.localFile}
+                                    name={`${author.firstName} ${author.lastName}`}
+                                    designation={author.profession}
+                                    social={author.social}
                                 />
                             </Col>
                         ))}

@@ -77,7 +77,7 @@ const Footer = () => {
                             <FooterMenuWidget>
                                 <SingleFooterMenu>
                                     <FooterWidgetTitle>
-                                        <WidgetTitle>Quick Links</WidgetTitle>
+                                        <WidgetTitle>{footerData.footerTitle}</WidgetTitle>
                                     </FooterWidgetTitle>
                                     <Social
                                         sx={{ mt: "30px" }}

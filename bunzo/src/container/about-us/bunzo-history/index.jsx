@@ -12,18 +12,17 @@ import {
 const BunzoHistoryArea = () => {
     const bunzoHistoryAreaQery = useStaticQuery(graphql`
         query BunzoHistoryAreaQery {
-            aboutUsJson {
-                id
-                history_title
-                history {
-                    id
-                    title
-                    decText
+            strapiAbout {
+                goal
+                childStrapiAboutContactusbannertextTextnode {
+                  contactUsBannerText
                 }
-            }
+                missionVision
+              }
         }
     `);
-    const { history_title, history } = bunzoHistoryAreaQery.aboutUsJson;
+    const aboutData = bunzoHistoryAreaQery.strapiAbout;
+    const aboutDataRichText = aboutData.childStrapiAboutContactusbannertextTextnode.contactUsBannerText;
 
     return (
         <BunzoHistoryWrap>
@@ -34,11 +33,11 @@ const BunzoHistoryArea = () => {
                             <BunzoCol6>
                                 <BunzoHistoryTitle
                                     dangerouslySetInnerHTML={{
-                                        __html: history_title,
+                                        __html: aboutDataRichText,
                                     }}
                                 />
                             </BunzoCol6>
-                            <BunzoCol6>
+                            {/* <BunzoCol6>
                                 {history.map((itemData) => (
                                     <HistoryItem
                                         key={itemData.id}
@@ -46,6 +45,18 @@ const BunzoHistoryArea = () => {
                                         decText={itemData.decText}
                                     />
                                 ))}
+                            </BunzoCol6> */}
+                            <BunzoCol6>
+                                <HistoryItem
+                                    key={'mission-vision'}
+                                    title={'Mission & Vision'}
+                                    decText={aboutData.missionVision}
+                                />
+                                <HistoryItem
+                                    key={'goal'}
+                                    title={'Our Goal'}
+                                    decText={aboutData.goal}
+                                />
                             </BunzoCol6>
                         </BunzoRow>
                     </Col>

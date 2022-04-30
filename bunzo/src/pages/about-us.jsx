@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Layout from "@layout";
 import SEO from "@components/seo";
 import PageBreadcrumb from "../components/pagebreadcrumb";
-import AboutUsVideoArea from "../container/about-us/about-us-video-banner";
 import AboutPlatform from "../container/about-us/about-platform";
 import BunzoHistoryArea from "../container/about-us/bunzo-history";
 import TeamMembersArea from "../container/about-us/team-members";
@@ -18,11 +17,9 @@ const AboutUsPage = ({ location, pageContext }) => {
                 location={location}
                 title="About Us"
             />
-            <AboutUsVideoArea />
             <AboutPlatform />
             <BunzoHistoryArea />
             <TeamMembersArea />
-            <TestimonialArea />
         </Layout>
     );
 };

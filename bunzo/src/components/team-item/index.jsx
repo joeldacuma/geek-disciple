@@ -12,8 +12,9 @@ import {
     Desination,
 } from "./style";
 
-const TeamItems = ({ name, designation, images }) => {
-    const ThumImage = getImage(images[0]);
+const TeamItems = ({ name, designation, images, social }) => {
+    const ThumImage = getImage(images);
+    console.log(social);
     return (
         <SingleTeamArea>
             <TeamThum>
@@ -28,15 +29,14 @@ const TeamItems = ({ name, designation, images }) => {
                         bgColor="bgWhite"
                         size="sm"
                     >
-                        <SocialLink href="https://www.facebook.com/">
-                            <i className="icofont-facebook"></i>
-                        </SocialLink>
-                        <SocialLink href="https://twitter.com/home/">
-                            <i className="icofont-twitter"></i>
-                        </SocialLink>
-                        <SocialLink href="https://www.linkedin.com/">
-                            <i className="icofont-linkedin"></i>
-                        </SocialLink>
+                        {(social.length > 0) && social.map((link, i) => {
+                            return (
+                              <SocialLink key={i} href={link.iconLink}>
+                                <i className={`icofont-${link.icon}`}></i>
+                              </SocialLink>
+                              )
+                        })
+                        }
                     </Social>
                 </TeamShareTop>
                 <TeamMemberInfo>

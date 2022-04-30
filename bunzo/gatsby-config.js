@@ -103,6 +103,13 @@ module.exports = {
                                 },
                             }
                         }
+                    },
+                    {
+                        singularName: 'about',
+                        queryParams: {
+                            publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
+                            populate: '*'
+                        }
                     }
                ],
                queryLimit: 1000,

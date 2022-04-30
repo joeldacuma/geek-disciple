@@ -14,6 +14,7 @@ export const SingleTeamArea = styled.div`
 export const TeamThum = styled.div`
     img {
         width: 100%;
+        border-radius: 5px;
     }
 `;
 export const TeamContent = styled.div`
@@ -32,7 +33,7 @@ export const TeamContent = styled.div`
     background: -webkit-linear-gradient(
         bottom,
         rgba(0, 0, 0, 0.9) 0,
-        rgba(253, 195, 158, 0.9) 100%
+        rgba(102, 0, 51, 0.9) 100%
     );
 `;
 export const TeamShareTop = styled.div``;
@@ -44,5 +45,5 @@ export const NameTitle = styled.h6`
     color: #ffffff;
 `;
 export const Desination = styled.p`
-    color: #ffc4a0;
+    color: #ffff;
 `;
