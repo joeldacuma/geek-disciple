@@ -69,7 +69,7 @@ const CategoriesPosts = ({ location, pageContext }) => {
     
     return (
         <Layout>
-            <SEO title={"Geek Disciple Categories"} pathname="/" />
+            <SEO title={`Category: ${pageContext.slug}`} pathname={`/category/${pageContext.slug}`} />
             <PageBreadcrumb pageContext={pageContext} location={location} />
             <BlogDetailsArea>
                 <Container>

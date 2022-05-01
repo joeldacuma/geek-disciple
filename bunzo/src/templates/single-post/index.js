@@ -100,7 +100,7 @@ allStrapiBlog {
 
     return (
         <Layout>
-            <SEO title={post.title} pathname="/" />
+            <SEO title={post.title} pathname={`/blog/${post.slug}`} />
             <PageBreadcrumb pageContext={pageContext} location={location} />
             <BlogDetailsArea>
                 <Container>
