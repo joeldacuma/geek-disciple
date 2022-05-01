@@ -15,6 +15,9 @@ export const Title = styled.h3`
         font-size: 40px;
     }
 `;
+export const SubTitle = styled.p`
+
+`;
 export const ContactUsMap = styled.div`
     margin-top: 40px;
 `;

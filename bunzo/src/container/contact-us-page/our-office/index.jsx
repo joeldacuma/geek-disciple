@@ -7,44 +7,30 @@ import { ContactUsPageArea } from "./style";
 const OurOffices = () => {
     const officeinfoQuery = useStaticQuery(graphql`
         query OfficeinfoQuery {
-            contactUsJson {
-                id
-                officeWrap {
-                    addresText
-                    contactEmail
-                    contactNumber
-                    id
-                    officeName
-                    image1 {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-            }
+            strapiContact {
+                contactNumber
+                contactEmail
+                contactDescription
+                companyAddress
+              }
         }
     `);
 
-    const { officeWrap } = officeinfoQuery.contactUsJson;
+    //const { officeWrap } = officeinfoQuery.contactUsJson;
+    const contactUsData = officeinfoQuery.strapiContact;
 
     return (
         <ContactUsPageArea>
             <Container>
                 <Row className="gx-5">
-                    {officeWrap &&
-                        officeWrap.map((item, i) => {
-                            return (
-                                <Col lg={4} md={6} key={i}>
-                                    <SingleOfficeInfo
-                                        image={item.image1}
-                                        officeName={item.officeName}
-                                        contactNumber={item.contactNumber}
-                                        contactEmail={item.contactEmail}
-                                        addresText={item.addresText}
-                                    />
-                                </Col>
-                            );
-                        })}
+                <Col lg={6} md={7}>
+                    <SingleOfficeInfo
+                        contactNumber={contactUsData.contactNumber}
+                        contactEmail={contactUsData.contactEmail}
+                        addressText={contactUsData.companyAddress}
+                        description={contactUsData.contactDescription}
+                    />
+                 </Col>
                 </Row>
             </Container>
         </ContactUsPageArea>

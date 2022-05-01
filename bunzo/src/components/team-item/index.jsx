@@ -18,7 +18,7 @@ const TeamItems = ({ name, designation, images, social }) => {
     return (
         <SingleTeamArea>
             <TeamThum>
-                <GatsbyImage image={ThumImage} alt="" />
+                <GatsbyImage image={ThumImage} alt="profile-image" />
             </TeamThum>
             <TeamContent className="hover-action">
                 <TeamShareTop>

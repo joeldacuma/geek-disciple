@@ -1,6 +1,8 @@
 import styled, { device, themeGet } from "@theme/utils";
 
-export const Form = styled.form``;
+export const Form = styled.form`
+    max-width: 60%;
+`;
 export const SingleInputBox = styled.div`
     margin-bottom: 20px;
 `;
@@ -21,4 +23,12 @@ export const Textarea = styled.textarea`
     background-color: #fafafa;
     font-weight: 500;
     height: 200px;
+`;
+export const ContactMessage = styled.p`
+    .success-contact {
+      color: #222;
+    }
+    .failure-contact {
+      color: red;
+    }
 `;

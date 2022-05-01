@@ -13,6 +13,7 @@ import {
     NewsLetterMessage
 } from "./style";
 import { handleSubmit } from "../../utils/utilities";
+import { apiUrl } from "../../../config/config";
 import axios from "axios";
 
 const NewsletterSubscribeOne = () => {
@@ -28,25 +29,6 @@ const NewsletterSubscribeOne = () => {
         success: 'You subscribed to our newsletter please check your email.',
         duplicate: 'Email address already registered.'
     };
-
-    // const handleNewsLetterRequest = (values) => {
-    //     const body = {
-    //         "data": {
-    //           "subscriber": values.subscriber
-    //         }
-    //       };
-
-    //     // axios.post('https://geek-disciple.herokuapp.com/api/newsletters', body)
-    //     // .then((res) => {
-    //     //     isEmail = true;
-    //     //     setMessage('Your are now subscribed to our newsletter. Please check your email.');
-    //     //     setSubscriberEmail('');
-    //     // })
-    //     // .catch(error => {
-    //     //     isEmail = false;
-    //     //     setMessage(error.response.data.error.message);
-    //     // });
-    // };
 
     const handleNewsLetterSubmit = (event) => {
         if (!newsLetterValues.subscriber.match(/\S+@\S+\.\S+/)) {
@@ -69,7 +51,7 @@ const NewsletterSubscribeOne = () => {
             }
           };
 
-        axios.post('https://geek-disciple.herokuapp.com/api/newsletters', body)
+        axios.post(`${apiUrl}/newsletters`, body)
         .then((res) => {
             setMessage(MESSAGE.success);
             setNewsLetterValues({

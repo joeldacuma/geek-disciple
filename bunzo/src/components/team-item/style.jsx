@@ -14,7 +14,7 @@ export const SingleTeamArea = styled.div`
 export const TeamThum = styled.div`
     img {
         width: 100%;
-        border-radius: 5px;
+        border-radius: 15px;
     }
 `;
 export const TeamContent = styled.div`

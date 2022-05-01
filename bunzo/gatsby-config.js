@@ -110,6 +110,13 @@ module.exports = {
                             publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
                             populate: '*'
                         }
+                    },
+                    {
+                        singularName: 'contact',
+                        queryParams: {
+                            publicationState: process.env.GATSBY_IS_PREVIEW === 'true' ? 'preview' : 'live',
+                            populate: '*'
+                        }
                     }
                ],
                queryLimit: 1000,

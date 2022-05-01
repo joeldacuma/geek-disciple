@@ -16,19 +16,14 @@ import {
 } from "./style";
 
 const SingleOfficeInfo = ({
-    image,
-    officeName,
     contactNumber,
     contactEmail,
-    addresText,
+    addressText,
+    description
 }) => {
-    const images = getImage(image);
+
     return (
         <SingleOfficeInfowrap>
-            <OfficeThum>
-                <GatsbyImage image={images} alt="" />
-                <OfficeTitle className="hover-btn">{officeName}</OfficeTitle>
-            </OfficeThum>
             <SingleOfficeInfoBox>
                 <SingleContactInfo>
                     <IconBox>
@@ -64,25 +59,12 @@ const SingleOfficeInfo = ({
                         />
                     </IconBox>
                     <ContactText>
-                        <p>{addresText}</p>
+                        <p>{addressText}</p>
                     </ContactText>
                 </SingleContactInfo>
                 <ShareWrap>
                     <Title>Connect With Us:</Title>
-                    <Social sx={{ mt: "15px" }} shape="rounded-5" space={15}>
-                        <SocialLink href="https://www.facebook.com/">
-                            <i className="icofont-facebook"></i>
-                        </SocialLink>
-                        <SocialLink href="https://www.skype.com/">
-                            <i className="icofont-skype"></i>
-                        </SocialLink>
-                        <SocialLink href="https://twitter.com/home/">
-                            <i className="icofont-twitter"></i>
-                        </SocialLink>
-                        <SocialLink href="https://www.linkedin.com/">
-                            <i className="icofont-linkedin"></i>
-                        </SocialLink>
-                    </Social>
+                    <p>{description}</p>
                 </ShareWrap>
             </SingleOfficeInfoBox>
         </SingleOfficeInfowrap>
