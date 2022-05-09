@@ -82,6 +82,7 @@ allStrapiBlog {
             }
           }
         }
+        introduction
         content {
           data {
             content
@@ -100,7 +101,12 @@ allStrapiBlog {
 
     return (
         <Layout>
-            <SEO title={post.title} pathname={`/blog/${post.slug}`} />
+            <SEO 
+             title={post.title} 
+             pathname={`/blog/${post.slug}`}
+             metaImage={coverImage}
+             description={post.introduction}
+             />
             <PageBreadcrumb pageContext={pageContext} location={location} />
             <BlogDetailsArea>
                 <Container>

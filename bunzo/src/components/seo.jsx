@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby";
 const SEO = ({
     description,
     lang,
-    image: metaImage,
+    metaImage,
     title,
     titleTemplate,
     pathname,
@@ -40,15 +40,14 @@ const SEO = ({
 
     let pageUrl;
     const path = pathname.replace(/^\/|\/$/g, "");
-    const metaTitle = title || site.siteMetadata.title;
-    const template = titleTemplate || site.siteMetadata.titleTemplate;
-    const metaDescription = description || site.siteMetadata.description;
+    const metaTitle = title;
+    const metaDescription = description;
     const language = lang || site.siteMetadata.siteLanguage;
     const siteUrl = site.siteMetadata.siteUrl.replace(/\/$/, "");
     const mainUrl = site.siteMetadata.mainUrl.replace(/\/$/, "");
     const bannerImage =
-        metaImage && metaImage.src
-            ? `${mainUrl}${metaImage.src}`
+        metaImage && metaImage.images.fallback.src
+            ? `${mainUrl}${metaImage.images.fallback.src}`
             : `${siteUrl}/${site.siteMetadata.image}`;
     let canonicalLink;
     if (canonical) {
@@ -113,7 +112,7 @@ const SEO = ({
             <title>{siteTitle}</title>
             <meta name="description" content={metaDescription} />
             <meta name="image" content={bannerImage} />
-            <link rel="canonical" href={canonicalLink} />
+            <link rel="canonical" href={pageUrl} />
             <meta
                 name="robots"
                 content="index, follow, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
@@ -125,7 +124,7 @@ const SEO = ({
             <meta property="og:locale" content={language} />
             {isBlogPost ? <meta property="og:type" content="article" /> : null}
             <meta property="og:type" content="website" />
-            <meta property="og:url" content={canonicalLink} />
+            <meta property="og:url" content={pageUrl} />
             <meta property="og:title" content={siteTitle} />
             <meta property="og:description" content={metaDescription} />
             <meta property="og:image" content={bannerImage} />

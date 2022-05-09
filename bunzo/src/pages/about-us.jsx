@@ -11,7 +11,7 @@ import TestimonialArea from "../container/about-us/testimonial";
 const AboutUsPage = ({ location, pageContext }) => {
     return (
         <Layout>
-            <SEO title="About Us" pathname="/about-us" />
+            <SEO title="About Us" pathname="/about-us"  />
             <PageBreadcrumb
                 pageContext={pageContext}
                 location={location}
