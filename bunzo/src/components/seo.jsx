@@ -48,12 +48,8 @@ const SEO = ({
     const bannerImage =  metaImage ? `${mainUrl}${metaImage.images.fallback.src}` 
                          : `${siteUrl}/${site.siteMetadata.image}`;
 
-    pageUrl = `${siteUrl}/${path}`;
+    pageUrl = `${mainUrl}/${path}`;
     pageUrl = pageUrl.replace(/^\/+/g, "");
-    console.log(pageUrl);
-    const rootUrl = siteUrl + rootPath;
-    const prevLink = prevPage && prevPage !== null && rootUrl + prevPage;
-    const nextLink = nextPage && nextPage !== null && rootUrl + nextPage;
     let siteTitle;
     if (pathname === "/") {
         siteTitle = `${site.siteMetadata.titleTemplate}`;
