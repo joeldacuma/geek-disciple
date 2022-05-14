@@ -49,16 +49,12 @@ const SEO = ({
         metaImage && metaImage.images.fallback.src
             ? `${mainUrl}${metaImage.images.fallback.src}`
             : `${siteUrl}/${site.siteMetadata.image}`;
-    let canonicalLink;
-    if (canonical) {
-        canonicalLink = `${mainUrl}${canonical}`;
-    } else {
-        canonicalLink = site.siteMetadata.canonical;
-    }
-    const imgWidth = metaImage?.width ? metaImage.width : 875;
-    const imgHeight = metaImage?.height ? metaImage.height : 554;
+
+    const imgWidth = 875;
+    const imgHeight = 554;
     pageUrl = `${siteUrl}/${path}`;
     pageUrl = pageUrl.replace(/^\/+/g, "");
+    console.log(pageUrl);
     const rootUrl = siteUrl + rootPath;
     const prevLink = prevPage && prevPage !== null && rootUrl + prevPage;
     const nextLink = nextPage && nextPage !== null && rootUrl + nextPage;

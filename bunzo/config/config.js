@@ -28,5 +28,5 @@ module.exports = {
     shortName: "geekdisciple", // shortname for manifest. *Must* be shorter than 12 characters
     themeColor: "#41273c",
     backgroundColor: "#fff",
-    apiUrl: "https://geek-disciple.herokuapp.com/api",
+    apiUrl: "http://localhost:1337/api",
 };
