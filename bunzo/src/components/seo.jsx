@@ -45,7 +45,8 @@ const SEO = ({
     const language = lang || site.siteMetadata.siteLanguage;
     const siteUrl = site.siteMetadata.siteUrl.replace(/\/$/, "");
     const mainUrl = site.siteMetadata.mainUrl.replace(/\/$/, "");
-    const bannerImage =  metaImage.images.fallback.src;
+    const bannerImage =  metaImage ? `${mainUrl}${metaImage.images.fallback.src}` 
+                         : `${siteUrl}/${site.siteMetadata.image}`;
 
     pageUrl = `${siteUrl}/${path}`;
     pageUrl = pageUrl.replace(/^\/+/g, "");

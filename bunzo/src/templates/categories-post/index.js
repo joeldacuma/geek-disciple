@@ -10,7 +10,7 @@ import LargeSinglePosts from "../../components/large-single-post";
 import LatestPostArea from "../../container/latest-post";
 import { BlogDetailsArea, BlogDetailsRightSidebar } from "./style";
 import { flatDeep } from "../../utils/functions";
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const CategoriesPosts = ({ location, pageContext }) => {
     const postsQuery = useStaticQuery(graphql`
@@ -66,10 +66,18 @@ const CategoriesPosts = ({ location, pageContext }) => {
         ...new Set(flatDeep(posts.map((td) => td.node))),
     ];
     const filteredData = postsData.filter((data) => data.categories.slug === pageContext.slug);
-    
+    const categoryFiltered = filteredData[0];
+    console.log(categoryFiltered);
+    const categoryImage = getImage(categoryFiltered.cover.localFile);
+  
     return (
         <Layout>
-            <SEO title={`Category: ${pageContext.slug}`} pathname={`/category/${pageContext.slug}`} />
+            <SEO 
+             title={`Category: ${pageContext.slug}`} 
+             pathname={`/category/${pageContext.slug}`}
+             metaImage={categoryImage}
+             description={`Category of ${pageContext.slug}`}
+             />
             <PageBreadcrumb pageContext={pageContext} location={location} />
             <BlogDetailsArea>
                 <Container>
